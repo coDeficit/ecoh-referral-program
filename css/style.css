@@ -30,6 +30,7 @@ body {
     --color-landing: var(--color-green-400);
     --color-navMenu-bg: #ffffff;
     --border-thin: 1px solid #e2e1e5;
+    --border-extralight: 1px solid #a7a6b0;
     --color-overlay-bg: #14132c80;
 }
 
