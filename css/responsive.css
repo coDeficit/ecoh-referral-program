@@ -141,14 +141,11 @@
         border-bottom: var(--border-thin);
     }
     .ep-navbar .menu>ul>li.order-2 {
-        display: inherit;
+        display: block;
+        margin-bottom: 2px;
     }
     .ep-navbar .menu>ul>li.order-2.start {
         margin-top: 1rem;
-        /* background-color: aqua; */
-    }
-    .ep-navbar .menu>ul>li.order-2 {
-        margin-bottom: 2px;
         /* background-color: aqua; */
     }
     .ep-navbar .menu>ul>li.order-2 a {
