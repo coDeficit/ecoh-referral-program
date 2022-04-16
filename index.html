@@ -36,137 +36,64 @@
 
     <!-- css styles start -->
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/magaNav/reset.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/magaNav/style.min.css"> -->
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="stylesheet" type="text/css" href="css/magaNav/reset.min.css">
-    <link rel="stylesheet" type="text/css" href="css/magaNav/style.min.css">
     <!-- css styles end -->
 
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
 <body>
-    <!-- Header Section -->
-    <header class="header">
+    <!-- Navbar Section -->
+    <nav class="ep-navbar nav-at-header">
         <div class="container">
             <section class="wrapper">
-                <div class="header-item-left">
-                    <a href="./index.html" class="brand">MyBrand</a>
+                <div class="nav-item-left">
+                    <a href="./index.html" class="ep-brand">Ecoh Platform</a>
                 </div>
                 <!-- Navbar Section -->
-                <div class="header-item-center">
+                <div class="nav-item-center">
                     <div class="overlay"></div>
-                    <nav class="menu" id="menu">
-                        <div class="menu-mobile-header">
-                            <button type="button" class="menu-mobile-arrow"><i class="ion ion-ios-arrow-back"></i></button>
-                            <div class="menu-mobile-title"></div>
-                            <button type="button" class="menu-mobile-close"><i class="ion ion-ios-close"></i></button>
+                    <div class="menu" id="navMenu">
+                        <div class="menu-mobile-nav">
+                            <div class="menu-mobile-title">
+                                <img src="assets/images/logo.png" alt="Logo" height="24" alt="LFD Logo" loading="lazy" />
+                                <span>ECOH PLATFORM</span>
+                            </div>
+                            <button type="button" class="menu-mobile-close">
+                                <i data-feather="x"></i>
+                            </button>
                         </div>
                         <ul class="menu-section">
-                            <li class="menu-item"><a href="#">Home</a></li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Products <i class="ion ion-ios-arrow-down"></i></a>
-                                <div class="menu-subs menu-mega menu-column-4">
-                                    <div class="list-item text-center">
-                                        <a href="#">
-                                            <img src="./assets/product-01.jpg" loading="lazy" alt="Product Images">
-                                            <h4 class="title">Product One</h4>
-                                        </a>
-                                    </div>
-                                    <div class="list-item text-center">
-                                        <a href="#">
-                                            <img src="./assets/product-02.jpg" loading="lazy" alt="Product Images">
-                                            <h4 class="title">Product Two</h4>
-                                        </a>
-                                    </div>
-                                    <div class="list-item text-center">
-                                        <a href="#">
-                                            <img src="./assets/product-03.jpg" loading="lazy" alt="Product Images">
-                                            <h4 class="title">Product Three</h4>
-                                        </a>
-                                    </div>
-                                    <div class="list-item text-center">
-                                        <a href="#">
-                                            <img src="./assets/product-04.jpg" loading="lazy" alt="Product Images">
-                                            <h4 class="title">Product Four</h4>
-                                        </a>
-                                    </div>
-                                </div>
+                            <li class="menu-item active">
+                                <a href="#">How It Works</a>
+                                <div class="indicator"></div>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Categories <i class="ion ion-ios-arrow-down"></i></a>
-                                <div class="menu-subs menu-mega menu-column-4">
-                                    <div class="list-item">
-                                        <h4 class="title">Men's Fashion</h4>
-                                        <ul>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                        </ul>
-                                        <h4 class="title">Kid's Fashion</h4>
-                                        <ul>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="list-item">
-                                        <h4 class="title">Women's Fashion</h4>
-                                        <ul>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                        </ul>
-                                        <h4 class="title">Health & Beauty</h4>
-                                        <ul>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="list-item">
-                                        <h4 class="title">Home & Lifestyle</h4>
-                                        <ul>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                            <li><a href="#">Product List</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="list-item">
-                                        <img src="./assets/product-05.jpg" loading="lazy" alt="Product Images">
-                                    </div>
-                                </div>
+                            <li class="menu-item">
+                                <a href="#">Rewards</a>
+                                <div class="indicator"></div>
                             </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Accounts <i class="ion ion-ios-arrow-down"></i></a>
-                                <div class="menu-subs menu-column-1">
-                                    <ul>
-                                        <li><a href="#">Register</a></li>
-                                        <li><a href="#">Questions</a></li>
-                                        <li><a href="#">Privacy Policy</a></li>
-                                        <li><a href="#">Term of Cookies</a></li>
-                                    </ul>
-                                </div>
+                            <li class="menu-item">
+                                <a href="#">Guidelines</a>
+                                <div class="indicator"></div>
                             </li>
-                            <li class="menu-item"><a href="#">Resources</a></li>
-                            <li class="menu-item"><a href="#">Contact Us</a></li>
+                            <li class="menu-item">
+                                <a href="#">About Us</a>
+                                <div class="indicator"></div>
+                            </li>
                         </ul>
-                    </nav>
+                    </div>
                 </div>
 
-                <div class="header-item-right">
-                    <a href="#" class="menu-icon"><i class="ion ion-md-search"></i></a>
-                    <a href="#" class="menu-icon"><i class="ion ion-md-heart"></i></a>
-                    <a href="#" class="menu-icon"><i class="ion ion-md-cart"></i></a>
+                <div class="nav-item-right">
+                    <a href="#" class="menu-icon"><i data-feather="globe"></i></a>
+                    <a href="#" class="menu-icon"><i data-feather="sun"></i></a>
+                    <a href="#" class="menu-icon">
+                        <img src="assets/images/avatarFemale.svg" alt="avatar" class="rounded-circle mb-1" height="28" loading="lazy" />
+                    </a>
                     <button type="button" class="menu-mobile-toggle">
 						<span></span>
 						<span></span>
@@ -176,7 +103,7 @@
                 </div>
             </section>
         </div>
-    </header>
+    </nav>
     <script>
         feather.replace()
     </script>
@@ -185,7 +112,6 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/megaNav/script.js"></script>
     <script src="js/script.js "></script>
     <!-- js scripts end -->
 </body>
