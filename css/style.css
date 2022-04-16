@@ -29,7 +29,7 @@ body {
     --color-ter-txt: #626272;
     --color-landing: var(--color-green-400);
     --color-navMenu-bg: #ffffff;
-    --border-thin: 1px solid ##e2e1e5;
+    --border-thin: 1px solid #e2e1e5;
     --color-overlay-bg: #14132c80;
 }
 
@@ -264,11 +264,15 @@ img {
     margin-left: 1.5rem;
 }
 
+.ep-navbar .menu>ul>li.order-2 {
+    display: none;
+}
+
 .ep-navbar .menu>ul>li>a {
     position: relative;
     font-family: inherit;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.25;
     border: none;
     outline: none;

@@ -102,6 +102,9 @@
     .ep-navbar .menu>ul>li.active {
         margin-bottom: 8px;
     }
+    .ep-navbar .menu>ul>li.order-2 a span {
+        margin-left: 8px;
+    }
     .ep-navbar .menu>ul>li .indicator {
         background-color: var(--color-green-200);
         height: 4px;
@@ -116,8 +119,8 @@
     }
     .ep-navbar .menu>ul>li>a {
         display: block;
-        letter-spacing: .4px;
-        border-bottom: var(--border-thin);
+        font-weight: 600;
+        color: var(--color-ter-txt);
     }
     .ep-navbar .menu>ul>li>a i {
         position: absolute;
@@ -130,6 +133,30 @@
         text-align: center;
         -webkit-transform: rotate(-90deg);
         transform: rotate(-90deg);
+    }
+    .ep-navbar .menu>ul>li.active a {
+        color: var(--color-prim-txt);
+    }
+    .ep-navbar .menu>ul>li.order-1:nth-child(4) {
+        border-bottom: var(--border-thin);
+    }
+    .ep-navbar .menu>ul>li.order-2 {
+        display: inherit;
+    }
+    .ep-navbar .menu>ul>li.order-2.start {
+        margin-top: 1rem;
+        /* background-color: aqua; */
+    }
+    .ep-navbar .menu>ul>li.order-2 {
+        margin-bottom: 2px;
+        /* background-color: aqua; */
+    }
+    .ep-navbar .menu>ul>li.order-2 a {
+        display: flex;
+        align-items: center;
+    }
+    .ep-navbar .menu>ul>li.order-2 a img {
+        width: 24px;
     }
     .ep-navbar .menu .menu-mobile-nav {
         position: relative;
@@ -147,7 +174,7 @@
         height: fit-content;
         padding: 1rem 2% 1rem 0;
         margin-bottom: 1.5rem;
-        border-bottom: var(--border-thin);
+        /* border-bottom: var(--border-thin); */
         background: var(--color-sec-bg);
     }
     /* .ep-navbar .menu .menu-mobile-nav .menu-mobile-arrow {
@@ -177,7 +204,7 @@
         margin-top: .4rem;
     }
     .ep-navbar .menu .menu-mobile-nav .menu-mobile-title img {
-        width: 24px;
+        width: 40px;
     }
     .ep-navbar .menu .menu-mobile-nav .menu-mobile-title span {
         font-family: var(--font-brand);
@@ -186,6 +213,7 @@
         margin-left: .5rem;
         color: var(--color-green-400);
         letter-spacing: 0.8px;
+        display: none;
     }
     .ep-navbar .menu .menu-mobile-nav .menu-mobile-close {
         font-size: 2.25rem;
