@@ -107,7 +107,7 @@
     }
     .ep-navbar .menu>ul>li .indicator {
         background-color: var(--color-green-200);
-        height: 4px;
+        height: 3px;
         margin-top: 8px;
         -webkit-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
@@ -148,13 +148,16 @@
         margin-top: 1rem;
         /* background-color: aqua; */
     }
+    .ep-navbar .menu>ul>li.order-2 a span {
+        margin-left: 8px;
+    }
     .ep-navbar .menu>ul>li.order-2 a {
         display: flex;
         align-items: center;
     }
-    .ep-navbar .menu>ul>li.order-2 a img {
+    /* .ep-navbar .menu>ul>li.order-2 a img {
         width: 24px;
-    }
+    } */
     .ep-navbar .menu .menu-mobile-nav {
         position: relative;
         position: sticky;
@@ -174,20 +177,6 @@
         /* border-bottom: var(--border-thin); */
         background: var(--color-sec-bg);
     }
-    /* .ep-navbar .menu .menu-mobile-nav .menu-mobile-arrow {
-        display: none;
-        font-size: 1.25rem;
-        line-height: 3.125rem;
-        width: 3.125rem;
-        height: 3.125rem;
-        cursor: pointer;
-        text-align: center;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
-        color: var(--color-black);
-    }
-    .header .menu .menu-mobile-header.active .menu-mobile-arrow {
-        display: block;
-    } */
     .ep-navbar .menu .menu-mobile-nav .menu-mobile-title {
         font-family: inherit;
         font-size: 1rem;
@@ -200,17 +189,12 @@
         padding-left: 8%;
         margin-top: .4rem;
     }
-    .ep-navbar .menu .menu-mobile-nav .menu-mobile-title img {
-        width: 40px;
-    }
-    .ep-navbar .menu .menu-mobile-nav .menu-mobile-title span {
-        font-family: var(--font-brand);
-        font-size: 1.5rem;
-        font-weight: 800;
-        margin-left: .5rem;
-        color: var(--color-green-400);
-        letter-spacing: 0.8px;
-        display: none;
+    .ep-navbar .menu .menu-mobile-nav .menu-mobile-title button {
+        border: 2px solid var(--color-green-200);
+        border-radius: 2rem;
+        color: var(--color-green-200);
+        padding: 4px 40%;
+        font-weight: 600;
     }
     .ep-navbar .menu .menu-mobile-nav .menu-mobile-close {
         font-size: 2.25rem;
