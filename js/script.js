@@ -38,3 +38,31 @@ window.onresize = function() {
         }
     }
 };
+
+//profile tooltip toggle
+function hide(element) {
+    element.style.display = "none";
+}
+
+function toggleTooltip(toggler, tooltip) {
+    toggler.addEventListener('mouseover', () => {
+        tooltip.classList.remove('hide');
+    });
+    toggler.addEventListener('mouseout', () => {
+        tooltip.classList.add('hide');
+    });
+}
+
+const navProfileMenuToggler = document.querySelector('.toggle-account #profileThumbnail');
+const navProfileMenu = document.querySelector('.toggle-account #profileTooltip');
+
+navProfileMenuToggler.addEventListener('click', () => {
+    navProfileMenu.classList.toggle('hide');
+});
+
+const navTranslateBtn = document.querySelector('.nav-item-right .translate-btn');
+const navToggleTheme = document.querySelector('.nav-item-right .toggle-theme');
+const navTranslateBtnTooltip = navTranslateBtn.querySelector('.ep-tooltip');
+const navToggleThemeTooltip = navToggleTheme.querySelector('.ep-tooltip');
+toggleTooltip(navTranslateBtn, navTranslateBtnTooltip);
+toggleTooltip(navToggleTheme, navToggleThemeTooltip);

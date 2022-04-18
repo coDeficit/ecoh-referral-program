@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark light">
+    <!-- <meta name="color-scheme" content="dark light"> -->
     <title>Ecoh Platform Referral</title>
 
     <!-- Favicon links start -->
@@ -48,10 +48,13 @@
 <body>
     <!-- Navbar Section -->
     <nav class="ep-navbar nav-at-header">
-        <div class="container">
-            <section class="wrapper">
+        <div class="ep-container">
+            <section class="ep-wrapper">
                 <div class="nav-item-left">
-                    <a href="./index.html" class="ep-brand">Ecoh Platform</a>
+                    <a href="./index.html" class="ep-brand">
+                        <img src="assets/images/logo.png" alt="Logo" height="24" alt="LFD Logo" loading="lazy" />
+                        <span>Ecoh Platform</span>
+                    </a>
                 </div>
                 <!-- Navbar Section -->
                 <div class="nav-item-center">
@@ -68,7 +71,7 @@
                             </button>
                         </div>
                         <ul class="menu-section">
-                            <li class="menu-item order-1 active">
+                            <li class="menu-item order-1">
                                 <a href="#">How It Works</a>
                                 <div class="indicator"></div>
                             </li>
@@ -85,14 +88,14 @@
                                 <div class="indicator"></div>
                             </li>
                             <li class="menu-item order-2 start">
-                                <a href="#">
+                                <a href="#" class="translate-btn">
                                     <i data-feather="globe"></i>
                                     <span>Translate</span>
                                 </a>
                                 <div class="indicator"></div>
                             </li>
                             <li class="menu-item order-2">
-                                <a href="#">
+                                <a href="#" class="toggle-theme">
                                     <i data-feather="sun"></i>
                                     <span>Switch Theme</span>
                                 </a>
@@ -103,15 +106,34 @@
                 </div>
 
                 <div class="nav-item-right">
-                    <a href="#" class="menu-icon">
+                    <a href="#" class="translate-btn menu-icon">
                         <i data-feather="globe"></i>
+                        <span class="ep-tooltip hide">Translate</span>
                     </a>
-                    <a href="#" class="menu-icon">
+                    <a href="#" class="toggle-theme menu-icon">
                         <i data-feather="sun"></i>
+                        <span class="ep-tooltip hide">Switch Theme</span>
                     </a>
-                    <a href="#" class="menu-icon">
-                        <img src="assets/images/avatarFemale.svg" alt="avatar" class="rounded-circle mb-1" height="28" loading="lazy" />
-                    </a>
+                    <div class="toggle-account">
+                        <a href="#" class="signin-link menu-icon">SignIn</a>
+                        <!-- <div id="profileImg" aria-describedby="profileTooltip"> -->
+                        <img src="assets/images/userProfile.png" alt="avatar" id="profileThumbnail" class="profile-thumbnail rounded-circle mb-1 menu-icon" height="28" type="button" loading="lazy" />
+                        <!-- </div> -->
+                        <div class="ep-tooltip profile-menu hide" id="profileTooltip" role="tooltip">
+                            <div class="menu-item">
+                                <a href="#" id="profileImg">
+                                    <img src="assets/images/userProfile.png" alt="avatar" class="rounded-circle mb-1" height="40" type="button" loading="lazy" />
+                                </a>
+                                <div class="user-info">
+                                    <a href="#" class="menu-link fullname">Jane Doe</a>
+                                    <a href="#" class="menu-link email">janedoe@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="menu-item signout-btn" type="button">
+                                <span>SignOut</span> <i data-feather="log-out"></i>
+                            </div>
+                        </div>
+                    </div>
                     <button type="button" class="menu-mobile-toggle">
 						<span></span>
 						<span></span>
@@ -126,15 +148,12 @@
     <!-- ep-main-content -->
     <main class="ep-main-content">
         <div class="section" id="ep-landing">
-            <div class="ep-text-content">
-                <p>Welcome to the Ecoh Platform Referral Program!</p>
-                <!-- <p>Invite a friend to Ecoh Platform and get rewarded. </p> -->
-                <div class="ep-reward-container container">
-                    <p>If you invite friends who all make full payments on Living Food & Drink (LFD) Services, you can get up to</p>
-                    <p class="ep-reward">154,710,000 FCFA</p>
-                    <p>as reward in your ECOH personal savings account (PIP)!</p>
+            <div class="ep-container ep-text-content">
+                <div class="ep-reward-con">
+                    <p>Invite friends to Living Food & Drink (LFD) Services and stand a chance to get rewards as big as</p>
+                    <p class="ep-reward">154,710,000 FCFA!</p>
                 </div>
-                <button class="ep-login">View your referrals</button>
+                <button class="referrals-btn">See your referrals</button>
                 <a href="#0" class="ep-terms-link">Terms and Conditions</a>
             </div>
             <div class="ep-img-content">
@@ -260,7 +279,7 @@
 
     <!-- js scripts start -->
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <!-- <script src="js/popper.min.js"></script> -->
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/script.js "></script>
     <!-- js scripts end -->
