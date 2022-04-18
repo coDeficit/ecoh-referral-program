@@ -1,3 +1,19 @@
+const changeNavBarOnScroll = () => {
+    let navigation = document.querySelector('.ep-navbar');
+    let header = document.querySelector('#ep-header');
+    window.addEventListener('scroll', () => {
+        if (document.documentElement.scrollTop > header.offsetHeight - navigation.offsetHeight) {
+            navigation.classList.remove('nav-at-header');
+        } else {
+            navigation.classList.add('nav-at-header');
+        }
+    });
+
+}
+
+changeNavBarOnScroll();
+
+// responsive navbar
 const menu = document.querySelector('.menu');
 const menuSection = menu.querySelector('.menu-section');
 const menuClosed = menu.querySelector('.menu-mobile-close');
@@ -66,3 +82,42 @@ const navTranslateBtnTooltip = navTranslateBtn.querySelector('.ep-tooltip');
 const navToggleThemeTooltip = navToggleTheme.querySelector('.ep-tooltip');
 toggleTooltip(navTranslateBtn, navTranslateBtnTooltip);
 toggleTooltip(navToggleTheme, navToggleThemeTooltip);
+
+const landing = document.querySelector("#cd-landing");
+landingHeight = (window.innerHeight);
+landing.style.height = landingHeight + "px";
+landing.style.paddingTop = navHeight + "px";
+
+// reward--slider
+$(function() {
+
+    var owl = $('.owl-1');
+    owl.owlCarousel({
+        loop: false,
+        margin: 0,
+        nav: false,
+        dots: false,
+        items: 1,
+        smartSpeed: 200,
+        autoplay: false,
+        navText: ['<span class="icon-keyboard_arrow_left">', '<span class="icon-keyboard_arrow_right">']
+    });
+
+    var carousel_nav_a = $('.carousel-nav a');
+
+    carousel_nav_a.each(function(slide_index) {
+        var $this = $(this);
+        $this.attr('data-num', slide_index);
+        $this.click(function(e) {
+            owl.trigger('to.owl.carousel', [slide_index, 1000]);
+            e.preventDefault();
+        })
+    })
+
+    owl.on('changed.owl.carousel', function(event) {
+        carousel_nav_a.removeClass('active');
+        $(".carousel-nav a[data-num=" + event.item.index + "]").addClass('active');
+    })
+
+
+})

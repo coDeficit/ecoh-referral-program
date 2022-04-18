@@ -44,6 +44,7 @@ body {
     --color-navMenu-bg: #ffffff;
     --border-thin: 1px solid #e2e1e5;
     --border-extralight: 1px solid #a7a6b0;
+    --color-navbar-bg: #ffffffbb;
     --color-overlay-bg: #14132c80;
     --color-popup-bg: #ffffff;
 }
@@ -205,22 +206,24 @@ svg {
     margin: 0 auto;
     padding: 0.75rem 0;
     z-index: 100;
-    background: var(--color-white);
-    backdrop-filter: blur(5px);
+    background: var(--color-navbar-bg);
+    backdrop-filter: blur(40px);
     box-shadow: var(--shadow-medium);
 }
 
 .nav-at-header {
-    background: linear-gradient(#00000025, #00000000);
-    backdrop-filter: blur(0px);
+    background: linear-gradient(#00000041, #00000000);
+    backdrop-filter: blur(5px);
     box-shadow: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .nav-at-header .nav-item-left *,
 .nav-at-header .nav-item-center .menu *,
 .nav-at-header .nav-item-right *,
 .nav-at-header .nav-item-right a {
-    color: var(--color-white);
+    color: var(--color-white) !important;
 }
 
 .ep-navbar .ep-wrapper {
@@ -255,7 +258,7 @@ svg {
     letter-spacing: 0.4px;
 }
 
-.ep-brand {
+.ep-navbar .ep-brand {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -263,6 +266,7 @@ svg {
     -ms-flex-align: center;
     align-items: center;
     text-transform: uppercase;
+    color: var(--color-purple-300);
 }
 
 .ep-brand img {
@@ -451,6 +455,10 @@ svg {
     overflow-x: hidden;
 }
 
+.ep-main-content .section {
+    padding-top: 5%;
+}
+
 .ep-main-content .section h1 {
     font-weight: 700;
     text-align: center;
@@ -458,9 +466,9 @@ svg {
 }
 
 
-/* landing section */
+/* header section */
 
-.ep-main-content #ep-landing {
+.ep-main-content #ep-header {
     position: relative;
     height: 64vh;
     min-height: fit-content;
@@ -479,23 +487,23 @@ svg {
     margin-top: 2.5%;
 }
 
-#ep-landing .ep-text-content *,
-#ep-landing .ep-text-content a.ep-terms-link {
+#ep-header .ep-text-content *,
+#ep-header .ep-text-content a.ep-terms-link {
     color: var(--color-white);
 }
 
-#ep-landing .ep-text-content .ep-reward-con {
+#ep-header .ep-text-content .ep-reward-con {
     width: 70%;
 }
 
-#ep-landing .ep-text-content>.ep-reward-con p:nth-child(1) {
+#ep-header .ep-text-content>.ep-reward-con p:nth-child(1) {
     font-size: 1.8vw;
     font-weight: 700;
     margin-bottom: .25rem;
     opacity: .85;
 }
 
-#ep-landing .ep-reward-con .ep-reward {
+#ep-header .ep-reward-con .ep-reward {
     font-size: 4.9vw !important;
     font-weight: 900;
     letter-spacing: 1px;
@@ -503,7 +511,7 @@ svg {
     color: var(--color-green-300);
 }
 
-#ep-landing .ep-text-content .referrals-btn {
+#ep-header .ep-text-content .referrals-btn {
     margin-top: 1rem;
     background: transparent;
     border: 2px solid var(--color-green-100);
@@ -516,7 +524,7 @@ svg {
     width: 28%;
 }
 
-#ep-landing .ep-text-content .referrals-btn:hover {
+#ep-header .ep-text-content .referrals-btn:hover {
     background: var(--white);
     color: var(--color-purple-300);
     font-weight: 800;
@@ -526,7 +534,7 @@ svg {
     box-shadow: var(--shadow-medium);
 }
 
-#ep-landing .ep-text-content a.ep-terms-link {
+#ep-header .ep-text-content a.ep-terms-link {
     display: block;
     width: fit-content;
     text-decoration: underline;
@@ -536,21 +544,57 @@ svg {
     margin-top: 2rem;
 }
 
-#ep-landing .ep-text-content .ep-terms-link:hover {
+#ep-header .ep-text-content .ep-terms-link:hover {
     color: var(--color-green-200);
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 
-#ep-landing .ep-img-content {
+#ep-header .ep-img-content {
     position: absolute;
     right: 0;
     bottom: 0;
 }
 
-#ep-landing .ep-img-content img {
+#ep-header .ep-img-content img {
     height: 80vh;
 }
+
+
+/* how it works section */
+
+#ep-how-it-works .card-deck .card {
+    text-align: center;
+    background-color: var(--color-sec-bg);
+    border: none;
+    border-radius: 16px;
+    padding: .75rem;
+    padding-top: 32px;
+    margin-bottom: 1.75rem;
+}
+
+#ep-how-it-works .card-deck .card-heading p {
+    background-color: var(--color-purple-300);
+    color: var(--color-white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    width: 64px;
+    height: 64px;
+    padding-top: 14px;
+    border-radius: 4rem;
+}
+
+#ep-how-it-works .card-deck .card-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+#ep-how-it-works .card-deck .card-text {
+    color: var(--color-ter-txt);
+}
+
+
+/* rewards section */
 
 .hide {
     display: none;
