@@ -83,11 +83,6 @@ const navToggleThemeTooltip = navToggleTheme.querySelector('.ep-tooltip');
 toggleTooltip(navTranslateBtn, navTranslateBtnTooltip);
 toggleTooltip(navToggleTheme, navToggleThemeTooltip);
 
-const landing = document.querySelector("#cd-landing");
-landingHeight = (window.innerHeight);
-landing.style.height = landingHeight + "px";
-landing.style.paddingTop = navHeight + "px";
-
 // reward--slider
 $(function() {
 

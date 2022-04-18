@@ -457,10 +457,12 @@ svg {
 
 .ep-main-content .section {
     padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 .ep-main-content .section h1 {
-    font-weight: 700;
+    font-size: 2.8vw;
+    font-weight: 900;
     text-align: center;
     margin-bottom: 4%;
 }
@@ -563,9 +565,11 @@ svg {
 
 /* how it works section */
 
+#ep-how-it-works {}
+
 #ep-how-it-works .card-deck .card {
     text-align: center;
-    background-color: var(--color-sec-bg);
+    background-color: var(--color-ter-bg);
     border: none;
     border-radius: 16px;
     padding: .75rem;
@@ -574,7 +578,7 @@ svg {
 }
 
 #ep-how-it-works .card-deck .card-heading p {
-    background-color: var(--color-purple-300);
+    background-color: var(--color-orange-200);
     color: var(--color-white);
     font-size: 1.5rem;
     font-weight: 700;
@@ -582,6 +586,14 @@ svg {
     height: 64px;
     padding-top: 14px;
     border-radius: 4rem;
+}
+
+#ep-how-it-works .card-deck .card-2 .card-heading p {
+    background-color: var(--color-purple-300);
+}
+
+#ep-how-it-works .card-deck .card-3 .card-heading p {
+    background-color: var(--color-green-200);
 }
 
 #ep-how-it-works .card-deck .card-title {
@@ -595,6 +607,145 @@ svg {
 
 
 /* rewards section */
+
+.ep-main-content #ep-rewards {
+    background-color: var(--color-ter-bg);
+    text-align: center;
+    min-height: fit-content;
+}
+
+#ep-rewards .owl-1 .owl-nav {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}
+
+.carousel-nav {
+    width: 100%;
+    border-bottom: var(--border-extralight);
+    margin-bottom: 40px;
+    margin-top: 4%;
+}
+
+.carousel-nav a {
+    color: var(--color-ter-txt);
+    text-align: center;
+    display: inline-block;
+    font-weight: 500;
+    margin-bottom: .88%;
+}
+
+.carousel-nav a:hover {
+    color: var(--color-prim-txt);
+    text-decoration: none;
+}
+
+.carousel-nav a.active {
+    color: var(--color-purple-200);
+    font-weight: 700;
+}
+
+.carousel-nav a.a-2.active {
+    color: var(--color-green-200);
+}
+
+.carousel-nav a.active:before {
+    content: "";
+    bottom: 2%;
+    left: 0;
+    right: 0;
+    position: absolute;
+    border-bottom: 2px solid var(--color-purple-200);
+    margin-bottom: -2.1%;
+}
+
+.carousel-nav a.a-2.active:before {
+    border-bottom: 2px solid var(--color-green-200);
+}
+
+.owl-1 .cd-cnr-text {
+    font-weight: 600;
+}
+
+.owl-1 .cd-cnr-text span {
+    color: var(--color-purple-200);
+}
+
+.owl-1 table thead,
+.owl-1 table thead tr {
+    background-color: var(--color-prim-txt);
+}
+
+.owl-1 table thead th {
+    background-color: var(--color-sec-bg) !important;
+    color: var(--color-prim-txt);
+}
+
+.owl-1 .owl-nav .owl-next,
+.owl-1 .owl-nav .owl-prev {
+    border: 1px solid red;
+    z-index: 92;
+    position: absolute;
+    top: 50%;
+}
+
+.owl-1 .owl-nav .owl-next:active,
+.owl-1 .owl-nav .owl-next:focus,
+.owl-1 .owl-nav .owl-prev:active,
+.owl-1 .owl-nav .owl-prev:focus {
+    outline: none;
+}
+
+.owl-1 .owl-nav .owl-next span,
+.owl-1 .owl-nav .owl-prev span {
+    color: #fff;
+}
+
+.owl-1 .owl-nav .owl-next span:before,
+.owl-1 .owl-nav .owl-prev span:before {
+    font-size: 40px !important;
+}
+
+.owl-1 .owl-nav .owl-next {
+    border: 4px solid blue;
+    right: 20px;
+}
+
+.owl-1 .owl-nav .owl-prev {
+    left: 20px;
+}
+
+.owl-1 .owl-dots {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+
+.owl-1 .owl-dots .owl-dot {
+    background: none;
+    display: inline-block;
+}
+
+.owl-1 .owl-dots .owl-dot>span {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 4px;
+}
+
+.owl-1 .owl-dots .owl-dot.active>span {
+    background: white;
+}
+
+.owl-1 .owl-dots .owl-dot:active,
+.owl-1 .owl-dots .owl-dot:focus {
+    outline: none;
+}
 
 .hide {
     display: none;
