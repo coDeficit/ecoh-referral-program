@@ -55,6 +55,8 @@
         --color-navbar-bg: #ffffff80;
         --color-overlay-bg: #14132c80;
         --color-popup-bg: #ffffff;
+        --accent-color: #48c48c;
+        --accent-color-highlight: #3ca877;
     }
     /* body {
     --color-prim-bg: #3c4151;
@@ -120,6 +122,26 @@
      ::-moz-selection {
         color: var(--color-white);
         background-color: var(--color-green-200);
+    }
+
+    .bg-orange {
+        background: var(--color-orange-200);
+    }
+
+    .outline-orange {
+        outline: var(--color-orange-200);
+    }
+    .outline-orange:focus {
+        outline: var(--color-green-200);
+    }
+    .img-absolute {
+        position: absolute;
+    }
+    .pink-gradient {
+        background: linear-gradient(45deg, rgba(192, 91, 186, 0.2) 0%, rgba(192, 91, 186, 0.1) 100%);
+    }
+    .green-gradient {
+        background: linear-gradient(135deg, rgb(79, 213, 175, 0.1) 0%, rgba(79, 213, 175, 0.1) 100%);
     }
     
     a,
