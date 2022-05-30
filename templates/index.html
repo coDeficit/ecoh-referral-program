@@ -1,3 +1,4 @@
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,22 +10,22 @@
     <title>Ecoh Platform Referral Program</title>
 
     <!-- Favicon links start -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="./assets/favicons/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/favicons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/favicons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/favicons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/favicons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/favicons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/favicons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/favicons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/favicons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicons/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/favicons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/favicons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/favicons/manifest.json' %}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="./assets/favicons/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{% static 'assets/favicons/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <!-- Favicon links end -->
 
@@ -35,13 +36,13 @@
     <!-- Inter font link ends -->
 
     <!-- css styles start -->
-    <link rel="stylesheet" href="./css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/magaNav/reset.min.css">
-    <link rel="stylesheet" href="./css/owl.carousel.min.css">
-    <link rel="stylesheet" href="./css/animate.css">
-    <link rel="stylesheet" href="./css/theme.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/responsive.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magaNav/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <!-- css styles end -->
 
     <script src="https://unpkg.com/feather-icons"></script>
@@ -55,8 +56,8 @@
                 <div class="col-12">
                     <nav class="navbar navbar-expand-md navbar-light">
                         <div class="empty d-md-none"></div>
-                        <a class="navbar-brand d-flex align-items-center" href="./index.html">
-                            <img class="d-none d-lg-inline-flex mr-2" src="./assets/images/logo.png" alt="">
+                        <a class="navbar-brand d-flex align-items-center" href="{% static 'index.html' %}">
+                            <img class="d-none d-lg-inline-flex mr-2" src="{% static 'assets/images/logo.png' %}" alt="">
                             <span class="d-none d-md-inline-flex">Ecoh Platform</span>
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -97,7 +98,7 @@
                     <div class="col-12 col-md-6 col-lg-7 right-card">
                         <div class="hero-img-card mt-0 mt-md-4">
                             <div class="background"></div>
-                            <img src="./assets/images/pexels-lay-low-4605240.png" alt="hero image" class="foreground">
+                            <img src="{% static 'assets/images/pexels-lay-low-4605240.png' %}" alt="hero image" class="foreground">
                         </div>
                     </div>
                 </div>
@@ -521,12 +522,12 @@
 
 
     <!-- js scripts start -->
-    <script src="./js/jquery-3.6.0.min.js "></script>
-    <script src="./js/bootstrap/bootstrap.min.js "></script>
-    <script src="./js/popper.min.js "></script>
-    <script src="./https://kenwheeler.github.io/slick/slick/slick.js "></script>
-    <script src="./js/owl.carousel.min.js "></script>
-    <script src="./js/script.js "></script>
+    <script src="{% static 'js/jquery-3.6.0.min.js ' %}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js ' %}"></script>
+    <script src="{% static 'js/popper.min.js ' %}"></script>
+    <script src="{% static 'https://kenwheeler.github.io/slick/slick/slick.js ' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js ' %}"></script>
+    <script src="{% static 'js/script.js ' %}"></script>
     <!-- js scripts end -->
 </body>
 

@@ -1,3 +1,4 @@
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,26 +6,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Ecoh Platform | Login</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Ecoh Platform | Sign up</title>
 
     <!-- Favicon links start -->
-    <link rel="apple-touch-icon" sizes="57x57" href="./assets/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="./assets/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="./assets/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="./assets/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="./assets/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="./assets/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="./assets/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="./assets/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="./assets/favicons/manifest.json">
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/favicons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/favicons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/favicons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/favicons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/favicons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/favicons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/favicons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/favicons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicons/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/favicons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/favicons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/favicons/manifest.json' %}">
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="./assets/favicons/ms-icon-144x144.png">
+    <meta name="msapplication-TileImage" content="{% static 'assets/favicons/ms-icon-144x144.png' %}">
     <meta name="theme-color" content="#ffffff">
     <!-- Favicon links end -->
 
@@ -73,7 +74,9 @@
         .span-blue {
             color: #2196f3;
         }
-
+        .span-accented {
+            color: var(--accent-color);
+        }
         .signup-container,
         .signup-form {
             display: flex;
@@ -298,7 +301,7 @@
 <body>
     <div class="container">
         <main class="signup-container">
-            <h1 class="heading-primary">Log in<span class="span-blue">.</span></h1>
+            <h1 class="heading-primary">Sign up <span class="span-accented">.</span></h1>
             <p class="text-mute">Enter your credentials to access your account.</p>
             <div class="login-wrapper">
                 <!-- <a href="#" class="btn btn-google">
@@ -314,22 +317,37 @@
 
             <form class="signup-form">
                 <label class="inp">
-                    <input type="email" class="input-text" placeholder="&nbsp;">
-                    <span class="label">Username, phone number, code or email</span>
+                    <input type="text" id="person-name" class="input-text" placeholder="&nbsp;" value="John Frickin Doe">
+                    <span class="label">Full name</span>
                     <span class="input-icon"><i data-feather="user"></i></span>
+                </label>
+                <label class="inp">
+                    <input type="tel" name="person-phone" id="person-phone" class="input-text" placeholder="&nbsp;" value="690899321">
+                    <span class="label">Phone number</span>
+                    <span class="input-icon"><i data-feather="phone"></i></span>
+                </label>
+                <label class="inp">
+                    <input type="tel" name="person-email" id="person-email" class="input-text" placeholder="&nbsp;">
+                    <span class="label">Email address</span>
+                    <span class="input-icon"><i data-feather="mail"></i></span>
+                </label>
+                <label class="inp">
+                    <input type="email" class="input-text" placeholder="&nbsp;">
+                    <span class="label">Username</span>
+                    <span class="input-icon"><i data-feather="at-sign"></i></span>
                 </label>
                 <label class="inp">
                     <input type="password" class="input-text" placeholder="&nbsp;" id="password">
                     <span class="label">Password</span>
-                    <span class="input-icon input-icon-password" data-password><i data-feather="eye"></i></span>
+                    <span class="input-icon input-icon-password" data-password><i data-feather="eye-off"></i></span>
                 </label>
                 <button class="btn btn-login">Login</button>
             </form>
-            <p class="text-mute">Not a member? <a href="signup.html">Sign up</a></p>
+            <p class="text-mute">Not a member? <a href="$">Sign up</a></p>
         </main>
         <div class="welcome-container pink-gradient">
             <h1 class="heading-secondary">Welcome to <span class="lg">ECOH Platform!</span></h1>
-            <img src="./assets/images/img-1.png"
+            <img src="{% static 'assets/images/img-1.png' %}"
                 alt="No image">
         </div>
     </div>
@@ -352,11 +370,11 @@
 <script>
     feather.replace();
 </script>
-<script src="./js/jquery-3.6.0.min.js "></script>
-<script src="./js/bootstrap/bootstrap.min.js "></script>
-<script src="./js/popper.min.js "></script>
-<script src="./https://kenwheeler.github.io/slick/slick/slick.js "></script>
-<script src="./js/owl.carousel.min.js "></script>
+<script src="{% static 'js/jquery-3.6.0.min.js ' %}"></script>
+<script src="{% static 'js/bootstrap/bootstrap.min.js ' %}"></script>
+<script src="{% static 'js/popper.min.js ' %}"></script>
+<script src="{% static 'https://kenwheeler.github.io/slick/slick/slick.js ' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js ' %}"></script>
 </body>
 
 </html>
