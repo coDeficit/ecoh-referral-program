@@ -312,15 +312,29 @@
                     <span class="line"></span>
                 </div> -->
             </div>
+            <div>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            {{ field.label }}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            </div>
 
-            <form class="signup-form">
+            <form class="signup-form" method="post">
+                {{ request.session.user.auth_token }}
+                {% csrf_token %}
                 <label class="inp">
-                    <input type="email" class="input-text" placeholder="&nbsp;">
+                    <input type="text" class="input-text" placeholder="&nbsp;" name="identifier">
                     <span class="label">Username, phone number, code or email</span>
                     <span class="input-icon"><i data-feather="user"></i></span>
                 </label>
                 <label class="inp">
-                    <input type="password" class="input-text" placeholder="&nbsp;" id="password">
+                    <input type="password" class="input-text" placeholder="&nbsp;" id="password" name="password">
                     <span class="label">Password</span>
                     <span class="input-icon input-icon-password" data-password><i data-feather="eye"></i></span>
                 </label>

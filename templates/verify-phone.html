@@ -1,0 +1,199 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta name="color-scheme" content="dark light"> -->
+    <title>Ecoh Platform Referral Program</title>
+
+    <!-- Favicon links start -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'assets/favicons/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'assets/favicons/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'assets/favicons/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/favicons/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'assets/favicons/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'assets/favicons/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'assets/favicons/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'assets/favicons/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/favicons/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'assets/favicons/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/favicons/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'assets/favicons/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static 'assets/favicons/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Favicon links end -->
+
+    <!-- Inter font link starts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Inter font link ends -->
+
+    <!-- css styles start -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magaNav/reset.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- css styles end -->
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body {
+            background-color: #1b1f27;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
+            background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0) 40%, rgba(79, 213, 175, 0.2) 100%);
+        }
+
+        .area-login {
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h1 {
+            color: #cbd0f7;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .login {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            background-color: #181920;
+            width: 600px;
+            height: 600px;
+            border-radius: 8px;
+            padding: 35px;
+            z-index: 1000;
+            /* background-image: linear-gradient( to bottom, rgba(0, 0, 0, 0) 40%, rgba(79, 213, 175, 0.2) 100%); */
+        }
+
+        .login form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .login input {
+            margin-top: 15px;
+            background-color: #252a34;
+            color: #cbd0f7;
+            border: none;
+            height: 45px;
+            padding: 0 10px;
+            outline: none;
+            border-radius: 8px;
+        }
+
+        .login img {
+            width: 65px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        input::placeholder {
+            color: #cbd0f7;
+            font-size: 14px;
+            text-transform: capitalize;
+        }
+
+        form [type="submit"] {
+            display: inline-block;
+            background-color: #5568fe;
+            font-size: 17px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 25px 0;
+            cursor: pointer;
+
+            opacity: 0.8;
+        }
+
+        form [type="submit"]:hover {
+            opacity: 1;
+        }
+
+        p {
+            color: #cbd0f7;
+        }
+
+        p a {
+            color: #5568fe;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .otc-digit {
+            width: 12%;
+            font-size: 2rem;
+            text-align: center;
+            height: 128px;!important;
+            appearance: textfield;
+        }
+        .login .otc-digit {
+            height: 128px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="area-login ep-hero">
+        <div class="col-12 circle-blur-bg"></div>
+        <h1>{% trans "Login" %}</h1>
+        <div class="login">
+            <div>
+                <img src="{% static 'assets/images/logo.png' %}" />
+            </div>
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+            <form action="#" method="post"> 
+                {% csrf_token %}
+                {{ request.session.requests_sen
+                {% if not request.session.requests_sent %}
+                <input class="outline-orange" type="text" name="country_code" placeholder="{% trans 'Country code' %}" autofocus value="+237" />
+                <input class="outline-orange" type="text" name="number" placeholder="{% trans 'Phone number' %}" />
+                <input type="hidden" name="action" value="send">
+                
+                {% else %}
+                <input type="hidden" name="action" value="verify">
+                <div cla style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                    <input type="number" name="code[]" class="otc-digit">
+                    <input type="number" name="code[]" class="otc-digit">
+                    <input type="number" name="code[]" class="otc-digit">
+                    <input type="number" name="code[]" class="otc-digit">
+                    <input type="number" name="code[]" class="otc-digit">
+                    <input type="number" name="code[]" class="otc-digit">
+                </div>
+                {% endif %}
+
+                <input type="submit" value="Submit" />
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

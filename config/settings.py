@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -112,6 +113,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+API_HOST = "http://localhost:8000"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
