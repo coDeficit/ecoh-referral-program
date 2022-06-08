@@ -27,5 +27,6 @@ urlpatterns = [
     path("get-people/", views.get_people),
     path("base", views.base),
     path("home/team/", views.team, name='team'),
+    path("home/wallet/", views.wallet, name='wallet'),
     path("home/", views.dashboard, name='dashboard'),
 ]

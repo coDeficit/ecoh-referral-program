@@ -172,7 +172,7 @@
             {% endif %}
             <form action="#" method="post"> 
                 {% csrf_token %}
-                {{ request.session.requests_sen
+                {{ request.session.requests_sent }}
                 {% if not request.session.requests_sent %}
                 <input class="outline-orange" type="text" name="country_code" placeholder="{% trans 'Country code' %}" autofocus value="+237" />
                 <input class="outline-orange" type="text" name="number" placeholder="{% trans 'Phone number' %}" />

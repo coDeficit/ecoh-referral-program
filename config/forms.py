@@ -30,3 +30,8 @@ class PhoneNumberAndCodeForm(PhoneNumberForm):
 class UserLoginForm(forms.Form):
     identifier = forms.CharField(max_length=256)
     password = forms.CharField(max_length=256)
+
+class UserSignupForm(forms.Form):
+    username = forms.CharField(max_length=50)
+    email = forms.CharField(max_length=256)
+    password = forms.CharField(max_length=256)

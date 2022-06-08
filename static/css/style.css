@@ -129,6 +129,11 @@
         background: var(--color-orange-200);
     }
 
+    .bg-orange:hover {
+        background-color: var(--color-black);
+        color: var(--color-orange-200);
+    }
+
     .outline-orange {
         outline: var(--color-orange-200);
     }

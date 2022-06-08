@@ -28,6 +28,9 @@ function getDates(number=6, duration="month", date=new Date()) {
 
 const ctx = document.getElementById("chart").getContext("2d");
 
+$("#beneficiary-stats .num").text(json["general"]["total_number_of_beneficiaries_referred"])
+$("#earnings-stat .num").text(json["general"]["cost_of_total_number_of_rewards"])
+
 const actions = [
     {
       name: 'pointStyle: circle (default)',

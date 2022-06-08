@@ -315,26 +315,16 @@
                 </div> -->
             </div>
 
-            <form class="signup-form">
+            <form class="signup-form" method="post">
                 <label class="inp">
-                    <input type="text" id="person-name" class="input-text" placeholder="&nbsp;" value="John Frickin Doe">
-                    <span class="label">Full name</span>
-                    <span class="input-icon"><i data-feather="user"></i></span>
-                </label>
-                <label class="inp">
-                    <input type="tel" name="person-phone" id="person-phone" class="input-text" placeholder="&nbsp;" value="690899321">
-                    <span class="label">Phone number</span>
-                    <span class="input-icon"><i data-feather="phone"></i></span>
-                </label>
-                <label class="inp">
-                    <input type="tel" name="person-email" id="person-email" class="input-text" placeholder="&nbsp;">
-                    <span class="label">Email address</span>
-                    <span class="input-icon"><i data-feather="mail"></i></span>
-                </label>
-                <label class="inp">
-                    <input type="email" class="input-text" placeholder="&nbsp;">
+                    <input type="text" class="input-text" placeholder="&nbsp;">
                     <span class="label">Username</span>
                     <span class="input-icon"><i data-feather="at-sign"></i></span>
+                </label>
+                <label class="inp">
+                    <input type="email" name="person-email" id="person-email" class="input-text" placeholder="&nbsp;">
+                    <span class="label">Email address</span>
+                    <span class="input-icon"><i data-feather="mail"></i></span>
                 </label>
                 <label class="inp">
                     <input type="password" class="input-text" placeholder="&nbsp;" id="password">
@@ -343,7 +333,7 @@
                 </label>
                 <button class="btn btn-login">Login</button>
             </form>
-            <p class="text-mute">Not a member? <a href="$">Sign up</a></p>
+            <p class="text-mute">Already a member? <a href="{% url 'login' %}">Log in</a></p>
         </main>
         <div class="welcome-container pink-gradient">
             <h1 class="heading-secondary">Welcome to <span class="lg">ECOH Platform!</span></h1>

@@ -976,6 +976,9 @@
                     <li class="item" title="{% trans 'Team' %}" aria-label="{% trans 'Team' %}">
                         <a class="link {% block team_active %}{% endblock %}" href="{% url 'team' %}"><i class="fas fa-users"></i></a>
                     </li>
+                    <li class="item" title="{% trans 'Wallet' %}" aria-label="{% trans 'Wallet' %}">
+                        <a href="{% url 'wallet' %}" class="link {% block wallet_active %}{% endblock %}"><i class="fas fa-wallet"></i></a>
+                    </li>
                 </ul>
             </div>
             <div class="bottom">
@@ -1136,10 +1139,10 @@
             "{% trans 'Sunday' %}"
         ]
     </script>
-    <script src="{% static 'js/popper.min.js ' %}"></script>
-    <script src="{% static 'https://kenwheeler.github.io/slick/slick/slick.js ' %}"></script>
-    <script src="{% static 'js/owl.carousel.min.js ' %}"></script>
-    <script src="{% static 'js/script.js ' %}"></script>
+    <!-- <script src="{% static 'js/popper.min.js ' %}"></script> -->
+    <!-- <script src="https://kenwheeler.github.io/slick/slick/slick.js"></script> -->
+    <!-- <script src="{% static 'js/owl.carousel.min.js ' %}"></script> -->
+    <!-- <script src="{% static 'js/script.js ' %}"></script> -->
     <!-- js scripts end -->
 
     {% block js %}

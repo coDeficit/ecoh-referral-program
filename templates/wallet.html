@@ -1,0 +1,68 @@
+{% extends 'base-template.html' %}
+{% load i18n static %}
+
+{% block title %}Wallet{% endblock %}
+{% block wallet_active%}active{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dataTables.bootstrap5.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/bootstrap-treeview.css' %}">
+<script type="text/javascript" src="{% static 'js/luxon.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/dataTables.bootstrap5.min.js' %}"></script>
+<script>
+    // initializeing datatables 
+    $(document).ready(function () {
+        console.log("Doc is ready")
+        $('#table').DataTable({
+            ordering: false
+        });
+    })
+</script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<style>
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, button.nav-link {
+        background-color: inherit;
+        background: none;
+    } 
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="col-md-12 my-3 float-right text-right">
+    <button class="btn bg-orange">
+        Request payment
+    </button>
+</div>
+<div class="col-md-12 my-3">
+    <table class="table table-striped" id="table">
+        <thead>
+            <tr>
+                <th>
+                    Date made
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Receiver
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>
+                    Monday 12 June 2022
+                </td>
+                <td>
+                    50000
+                </td>
+                <td>
+                    John Doe
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

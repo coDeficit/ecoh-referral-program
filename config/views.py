@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 import requests
 
-from config.forms import PhoneNumberAndCodeForm, PhoneNumberForm, UserLoginForm, clean_country_code
+from config.forms import PhoneNumberAndCodeForm, PhoneNumberForm, UserLoginForm, UserSignupForm, clean_country_code
 from config.settings import API_HOST
 from rest_framework.response import Response
 from rest_framework.decorators import renderer_classes, api_view
@@ -45,8 +45,27 @@ def get_people(request):
     return Response(response.content)
 
 def signup(request):
-    if "number-verified" in request.session:
+    if "number-verified" in request.session and "person" in request.session and request.session["person"]:
         if request.session["number-verified"]:
+            form = UserSignupForm()
+            if request.method == "POST":
+                form = UserSignupForm(request.POST)
+
+                if form.is_valid():
+                    data = form.cleaned_data
+                    data["person"] = request.session["person"]
+
+                    response = requests.post(url='/'.join([API_HOST, "users", "register"]), data=data )
+
+                    if response.status_code == 200:
+                        request.session["user"] = response.json()
+                        res = redirect("dashboard")
+                        
+                    else:
+                        return render(request, "signup.html", {'form': form, 'error': response.json() })
+                else:
+                    return render(request, "signup.html", {'form': form})
+                pass
             return render(request, "signup.html")
         else:
             return redirect("verify-phone")
@@ -65,7 +84,7 @@ def verify_phone(request):
 
     if request.method == "POST":
         action = "SEND"
-        action = request.POST.get("action")
+        action = request.POST.get("action").upper()
         form = None
         has_error = False
 
@@ -100,10 +119,12 @@ def verify_phone(request):
 
         if not has_error:
             response = requests.post(url=url, data=data)
-
             if response.status_code == 200 and action == "VERIFY":
-                request.session["person"] = response.content["person"]
-                return redirect(request, "signup")
+                request.session["person"] = json.loads(response.content)
+                request.session["number-verified"] = True
+                res = redirect("signup")
+                res.set_cookie("person", json.loads(response.content))
+                return res
 
             elif response.status_code == 200 and action == "SEND":
                 # add the current phone number, area code and timestamp to the session's request sent
@@ -131,3 +152,6 @@ def dashboard(request):
 
 def team(request):
     return render(request, "team.html")
+
+def wallet(request):
+    return render(request, "wallet.html")
