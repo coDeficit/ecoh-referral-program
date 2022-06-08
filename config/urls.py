@@ -26,5 +26,6 @@ urlpatterns = [
     path("verify-phone/", views.verify_phone, name='verify-phone'),
     path("get-people/", views.get_people),
     path("base", views.base),
-    path("home/", views.dashboard),
+    path("home/team/", views.team, name='team'),
+    path("home/", views.dashboard, name='dashboard'),
 ]

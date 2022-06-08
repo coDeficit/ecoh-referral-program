@@ -39,6 +39,8 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
         <link rel="stylesheet" href="{% static 'font-awesome/css/all.css' %}">
+        <script src="{% static 'js/jquery-3.6.0.min.js ' %}"></script>
+        <script src="{% static 'js/bootstrap/bootstrap.min.js ' %}"></script>
         <!-- css styles end -->
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
@@ -98,7 +100,7 @@
         }
 
         /* ::::::::::::::::::::::::::::: Nav */
-        .main .nav {
+        .main>.nav {
             position: fixed;
             z-index: 999;
             top: 0;
@@ -967,12 +969,12 @@
                 </a>
                 <ul class="navigation navbar-top">
                     <li class="item" title="{% trans 'Dashboard' %}" aria-label="{% trans 'Dashboard' %}">
-                        <a class="link {% block dashboard_active %}{% endblock %}" href="#">
+                        <a class="link {% block dashboard_active %}{% endblock %}" href="{% url 'dashboard' %}">
                             <i class="fas fa-tachometer-alt"></i>
                         </a>
                     </li>
                     <li class="item" title="{% trans 'Team' %}" aria-label="{% trans 'Team' %}">
-                        <a class="link" href="#"><i class="fas fa-users"></i></a>
+                        <a class="link {% block team_active %}{% endblock %}" href="{% url 'team' %}"><i class="fas fa-users"></i></a>
                     </li>
                 </ul>
             </div>
@@ -1134,8 +1136,6 @@
             "{% trans 'Sunday' %}"
         ]
     </script>
-    <script src="{% static 'js/jquery-3.6.0.min.js ' %}"></script>
-    <script src="{% static 'js/bootstrap/bootstrap.min.js ' %}"></script>
     <script src="{% static 'js/popper.min.js ' %}"></script>
     <script src="{% static 'https://kenwheeler.github.io/slick/slick/slick.js ' %}"></script>
     <script src="{% static 'js/owl.carousel.min.js ' %}"></script>

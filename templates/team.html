@@ -1,0 +1,126 @@
+{% extends 'base-template.html' %}
+{% load i18n static %}
+{% block title %}{% trans "Team & Referrals" %}{% endblock %}
+{% block team_active %}active{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/dataTables.bootstrap5.min.css' %}">
+
+<script type="text/javascript" src="{% static 'js/luxon.min.js' %}"></script>
+<script src="{% static 'js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'js/dataTables.bootstrap5.min.js' %}"></script>
+<script>
+    // initializeing datatables 
+    $(document).ready(function () {
+        console.log("Doc is ready")
+        $('#table').DataTable({
+            ordering: false
+        });
+    })
+</script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<style>
+    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, button.nav-link {
+        background-color: inherit;
+        background: none;
+    } 
+</style>
+{% endblock %}
+
+{% block body %}
+<ul class="nav nav-tabs my-2" id="tab" role="tablist">
+    <li class="nav-item">
+        <button class="nav-link active mx-1" id="referrals-tab" data-toggle="tab" href="#referrals" aria-controls="referrals" aria-selected="true">{% trans "Referrals" %}</button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link mx-1" id="referral-team-tab" data-toggle="tab" href="#referral-team" aria-controls="referral-team" aria-selected="false">{% trans "Referral team" %}</button>
+    </li>
+</ul>
+
+<div class="tab-content" id="tab-content">
+    <div class="tab-pane fade show" id="referral-team" role="tabpanel" aria-labelledby="referral-team-tab">
+
+    </div>
+
+    <div class="tab-pane fade show active" id="referrals" role="tabpanel" aria-labelledby="referrals-tab">
+        <div class="col-md-12">
+            <table class="table table-striped" id="table">
+                <thead>
+                    <tr>
+                        <th>
+                            {% trans "Name" %}
+                        </th>
+                        <th>
+                            {% trans "Phone" %}
+                        </th>
+                        <th>
+                            {% trans "Orders" %}
+                        </th>
+                        <th>
+                            {% trans "Referrals" %}
+                        </th>
+                        <th>
+                            {% trans "Status" %}
+                        </th>
+                        <th>
+                            {% trans "Action" %}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            John Doe
+                        </td>
+                        <td>
+                            8599490309503
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-primary">
+                                View (1)
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-success">
+                                View (3)
+                            </button>
+                        </td>
+                        <td>
+                            ---
+                        </td>
+                        <td>
+                            ---
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Jane Doe
+                        </td>
+                        <td>
+                            8979490309503
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-primary">
+                                View (2)
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-success">
+                                View (10)
+                            </button>
+                        </td>
+                        <td>
+                            ---
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-secondary">
+                                Assign
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

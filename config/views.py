@@ -128,3 +128,6 @@ def base(request):
 
 def dashboard(request):
     return render(request, "dashboard.html")
+
+def team(request):
+    return render(request, "team.html")
