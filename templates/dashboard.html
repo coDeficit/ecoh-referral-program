@@ -1,0 +1,62 @@
+{% extends 'base-template.html' %}
+{% load i18n static %}
+{% block title %}{% trans "Dashboard" %}{% endblock %}
+
+{% block body %}
+{% block dashboard_active %}active{% endblock %}
+<!-- Start Analytics -->
+<div class="analytics section-border-radius">
+    <h3 class="section-header">Analytics Overview</h3>
+    <div class="list-analytics">
+        <div class="analytic a">
+            <span class="icon">
+                <i class="fas fa-volume-up"></i>
+            </span>
+            <h3 class="num">30</h3>
+            <p class="desc">{% trans 'Number of effective referrals' %}</p>
+        </div>
+        <div class="analytic b">
+            <span class="icon">
+                <i class="fas fa-users"></i>
+            </span>
+            <h3 class="num">4</h3>
+            <p class="desc">{% trans 'Sub referrers' %}</p>
+            <span class="percent up">
+                <i class="fas fa-users"></i>
+                <span class="value">4</span>
+            </span>
+        </div>
+        <div class="analytic c">
+            <span class="icon">
+                <i class="fas fa-dollar-sign"></i>
+            </span>
+            <h3 class="num">30000</h3>
+            <p class="desc">{% trans 'Total earned' %}</p>
+            <span class="percent down">
+                <i class="fas fa-caret-down"></i>
+                <span class="value">12.42%</span>
+            </span>
+        </div>
+        <div class="analytic d">
+            <span class="icon">
+                <i class="fas fa-hand-pointer"></i>
+            </span>
+            <h3 class="num">0.2</h3>
+            <p class="desc">{% trans 'Engagement Rate' %}</p>
+            <span class="percent up">
+                <i class="fas fa-caret-up"></i>
+                <span class="value">86.79%</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <canvas id="chart" class="h-100 w-100"></canvas>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/chart.min.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}

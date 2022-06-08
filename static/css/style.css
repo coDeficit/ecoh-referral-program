@@ -42,6 +42,7 @@
         --grad-prim-left-bg: linear-gradient( 315deg, rgba(245, 253, 251, 1) 0%, rgba(240, 251, 248, 1) 100%);
         --grad-prim-bg-left-moz: -moz-linear-gradient( 315deg, rgba(245, 253, 251, 1) 0%, rgba(240, 251, 248, 1) 100%);
         --grad-prim-bg-left-webkit: -webkit-linear-gradient( 315deg, rgba(245, 253, 251, 1) 0%, rgba(240, 251, 248, 1) 100%);
+        --green-gradient-to-bottom: linear-gradient( to bottom, rgba(0, 0, 0, 0) 40%, rgba(79, 213, 175, 0.2) 100% )
         --color-sec-bg: #eff3f2;
         /* --color-ter-bg: #ebebed; */
         --color-prim-txt: #000000;

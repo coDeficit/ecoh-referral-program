@@ -8,6 +8,8 @@ import requests
 from config.forms import PhoneNumberAndCodeForm, PhoneNumberForm, UserLoginForm, clean_country_code
 from config.settings import API_HOST
 from rest_framework.response import Response
+from rest_framework.decorators import renderer_classes, api_view
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 
 
 def index(request):
@@ -33,10 +35,13 @@ def login(request):
             
     return render(request, "login-2.html")
 
+@api_view(('GET', ))
+@renderer_classes( (JSONRenderer, ) )
 def get_people(request):
     token = "f3bb73032d90661668b2617a2dbde29594200f72a1b1290f6e6801d297c9eb2c"
     response = requests.get(url=f"{API_HOST}/api/people", headers={"Authorization": f"Token {token}"})
     print(response.status_code)
+    print(response.content)
     return Response(response.content)
 
 def signup(request):
@@ -110,6 +115,7 @@ def verify_phone(request):
 
                 request.session["requests_sent"] = list_of_requests
             else:
+                print(response.content)
                 return render(request, "verify-phone.html", context={"errors": response.content})
         else:
             print("Errors encountered")
@@ -117,3 +123,8 @@ def verify_phone(request):
 
     return render(request, "verify-phone.html")
 
+def base(request):
+    return render(request, "base-template.html")
+
+def dashboard(request):
+    return render(request, "dashboard.html")
