@@ -296,9 +296,19 @@
             }
         }
     </style>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
 </head>
 
 <body>
+    <div class="row my-3 w-50 justify-content-center" id="messages">
+        {% for error in errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            {{ error }}
+        </div>
+        {% endfor %}
+    </div>
     <div class="container">
         <main class="signup-container">
             <h1 class="heading-primary">Sign up <span class="span-accented">.</span></h1>
@@ -314,20 +324,32 @@
                     <span class="line"></span>
                 </div> -->
             </div>
-
+            <div>
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            {{ field.label }}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            </div>
             <form class="signup-form" method="post">
+                {% csrf_token %}
                 <label class="inp">
-                    <input type="text" class="input-text" placeholder="&nbsp;">
+                    <input type="text" class="input-text" placeholder="&nbsp;" name="username" value="doc_alice">
                     <span class="label">Username</span>
                     <span class="input-icon"><i data-feather="at-sign"></i></span>
                 </label>
                 <label class="inp">
-                    <input type="email" name="person-email" id="person-email" class="input-text" placeholder="&nbsp;">
+                    <input type="email" name="email" id="person-email" class="input-text" placeholder="&nbsp;" value="dralice@gmail.com">
                     <span class="label">Email address</span>
                     <span class="input-icon"><i data-feather="mail"></i></span>
                 </label>
                 <label class="inp">
-                    <input type="password" class="input-text" placeholder="&nbsp;" id="password">
+                    <input type="password" class="input-text" placeholder="&nbsp;" id="password" name="password" value="password">
                     <span class="label">Password</span>
                     <span class="input-icon input-icon-password" data-password><i data-feather="eye-off"></i></span>
                 </label>
@@ -363,7 +385,7 @@
 <script src="{% static 'js/jquery-3.6.0.min.js ' %}"></script>
 <script src="{% static 'js/bootstrap/bootstrap.min.js ' %}"></script>
 <script src="{% static 'js/popper.min.js ' %}"></script>
-<script src="{% static 'https://kenwheeler.github.io/slick/slick/slick.js ' %}"></script>
+<script src="https://kenwheeler.github.io/slick/slick/slick.js"></script>
 <script src="{% static 'js/owl.carousel.min.js ' %}"></script>
 </body>
 

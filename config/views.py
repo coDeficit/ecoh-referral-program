@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import renderer_classes, api_view
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 
+SUCCESS_RESPONSES = [200, 201]
 
 def index(request):
     return render(request, "index.html")
@@ -26,11 +27,20 @@ def login(request):
             response = requests.post(url, data=data)
 
             if response.status_code == 200:
-                request.session["user"] = json.loads(response.content) 
+                user = response.json()
+                request.session["user"] = user
+                res = redirect("dashboard")
+                res.set_cookie("user", user)
+                res.set_cookie("auth_token", user["auth_token"])
+                res.set_cookie("api_host", API_HOST)
+
+                return res
             else:
-                return render(request, "login-2.html", {'form': form, 'errors': response.content})
+                breakpoint()
+                return render(request, "login-2.html", {'form': form, 'errors': response.json()})
 
         else:
+            breakpoint()
             return render(request, "login-2.html", {'form': form})
             
     return render(request, "login-2.html")
@@ -54,15 +64,22 @@ def signup(request):
                 if form.is_valid():
                     data = form.cleaned_data
                     data["person"] = request.session["person"]
+                    headers = {'Content-type': 'application/json'}
+                    response = requests.post(url='/'.join([API_HOST, "users", "register"]), data=json.dumps(data), headers=headers )
 
-                    response = requests.post(url='/'.join([API_HOST, "users", "register"]), data=data )
-
-                    if response.status_code == 200:
-                        request.session["user"] = response.json()
+                    if response.status_code in SUCCESS_RESPONSES:
+                        user = response.json()
+                        request.session["user"] = user
                         res = redirect("dashboard")
-                        
+                        res.set_cookie("user", user)
+                        res.set_cookie("auth_token", user["auth_token"])
+
+                        return res
                     else:
-                        return render(request, "signup.html", {'form': form, 'error': response.json() })
+                        try:
+                            return render(request, "signup.html", {'form': form, 'errors': response.json() })
+                        except requests.JSONDecodeError:
+                            return render(request, "signup.html", {'form': form})
                 else:
                     return render(request, "signup.html", {'form': form})
                 pass
