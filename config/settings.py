@@ -116,6 +116,7 @@ USE_I18N = True
 USE_TZ = True
 
 API_HOST = "http://localhost:8000"
+LOGIN_URL = "/login"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

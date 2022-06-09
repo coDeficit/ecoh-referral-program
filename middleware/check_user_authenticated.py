@@ -17,4 +17,5 @@ class Middleware:
                 request.session["is_authenticated"] = False
         else:
             request.session["is_authenticated"] = False
-        pass
+        
+        return self.get_response(request)

@@ -1,17 +1,42 @@
+from functools import wraps
 import json
 import os
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, resolve_url
 from django.utils import timezone
 from django.utils.translation import gettext as _
 import requests
+from urllib.parse import urlparse
 
 from config.forms import PhoneNumberAndCodeForm, PhoneNumberForm, UserLoginForm, UserSignupForm, clean_country_code
 from config.settings import API_HOST
+from config import settings
 from rest_framework.response import Response
 from rest_framework.decorators import renderer_classes, api_view
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 
 SUCCESS_RESPONSES = [200, 201]
+
+REDIRECT_FIELD_NAME = "next"
+
+def authentication_required(function=None, redirect_field_name=REDIRECT_FIELD_NAME, login_url=settings.LOGIN_URL):
+    @wraps(function)
+    def _wrapped_view(request, *args, **kwargs):
+        if "is_authenticated" in request.session and request.session["is_authenticated"]:
+            return function(request, *args, **kwargs)
+        path = request.build_absolute_uri()
+        resolved_login_url = resolve_url(login_url or settings.LOGIN_URL)
+
+        login_scheme, login_netloc = urlparse(resolved_login_url)[:2]
+        current_scheme, current_netloc = urlparse(path)[:2]
+        if ((not login_scheme or login_scheme == current_scheme) and
+                (not login_netloc or login_netloc == current_netloc)):
+            path = request.get_full_path()
+        from django.contrib.auth.views import redirect_to_login
+        return redirect_to_login(
+            path, resolved_login_url, redirect_field_name
+        )
+    
+    return _wrapped_view
 
 def index(request):
     return render(request, "index.html")
@@ -161,14 +186,14 @@ def verify_phone(request):
 
     return render(request, "verify-phone.html")
 
-def base(request):
-    return render(request, "base-template.html")
-
+@authentication_required
 def dashboard(request):
     return render(request, "dashboard.html")
 
+@authentication_required
 def team(request):
     return render(request, "team.html")
 
+@authentication_required
 def wallet(request):
     return render(request, "wallet.html")
