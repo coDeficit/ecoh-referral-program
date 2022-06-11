@@ -6,6 +6,7 @@ from django.utils import timezone
 from django.utils.translation import gettext as _
 import requests
 from urllib.parse import urlparse
+import urllib
 
 from config.forms import PhoneNumberAndCodeForm, PhoneNumberForm, UserLoginForm, UserSignupForm, clean_country_code
 from config.settings import API_HOST
@@ -54,14 +55,20 @@ def login(request):
             if response.status_code == 200:
                 user = response.json()
                 request.session["user"] = user
+
+                breakpoint()
+
                 res = redirect("dashboard")
-                res.set_cookie("user", user)
+                
                 res.set_cookie("auth_token", user["auth_token"])
+
+                user = urllib.parse.quote_plus(json.dumps(user))
+
+                res.set_cookie("user", user)
                 res.set_cookie("api_host", API_HOST)
 
                 return res
             else:
-                breakpoint()
                 return render(request, "login-2.html", {'form': form, 'errors': response.json()})
 
         else:

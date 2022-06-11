@@ -535,10 +535,18 @@
         -o-transition: all 0.2s ease-in;
         transition: all 0.2s ease-in;
     }
+
+    .ep-hero>.foreground .left-card button > a {
+        color: var(--color-black);
+    }
     
     .ep-hero>.foreground .left-card button:hover {
         color: var(--color-orange-200);
         background-color: var(--color-black);
+    }
+
+    .ep-hero>.foreground .left-card button:hover>a {
+        color: var(--color-orange-200);
     }
     
     .hero-img-card {
