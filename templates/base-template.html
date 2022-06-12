@@ -64,22 +64,42 @@
                 </a>
                 <ul class="navigation navbar-top">
                     <li class="item" title="{% trans 'Dashboard' %}" aria-label="{% trans 'Dashboard' %}">
-                        <a class="link {% block dashboard_active %}{% endblock %}" href="{% url 'dashboard' %}">
-                            <i class="fas fa-tachometer-alt"></i>
+                        <a class="link {% block dashboard_active %}{% endblock %}" href="
+                        {% if not request.session.slug %}
+                        {% url 'dashboard' %}
+                        {% else %}
+                        {% url 'dashboard' request.session.slug %}
+                        {% endif %}
+                        ">
+                            <i class="fas fa-tachometer-alt"></i> <span>{% trans 'Dashboard' %}</span>
                         </a>
                     </li>
                     <li class="item" title="{% trans 'Team' %}" aria-label="{% trans 'Team' %}">
-                        <a class="link {% block team_active %}{% endblock %}" href="{% url 'team' %}"><i class="fas fa-users"></i></a>
+                        <a class="link {% block team_active %}{% endblock %}" href="
+                        {% if not request.session.slug %}
+                        {% url 'team' %}
+                        {% else %}
+                        {% url 'team' request.session.slug %}
+                        {% endif %}
+                        "><i class="fas fa-users"></i> <span>{% trans 'Team' %}</span>
+                    </a>
                     </li>
                     <li class="item" title="{% trans 'Wallet' %}" aria-label="{% trans 'Wallet' %}">
-                        <a href="{% url 'wallet' %}" class="link {% block wallet_active %}{% endblock %}"><i class="fas fa-wallet"></i></a>
+                        <a href="
+                        {% if not request.session.slug %}
+                        {% url 'wallet' %}
+                        {% else %}
+                        {% url 'team' request.session.slug %}
+                        {% endif %}
+                        " class="link {% block wallet_active %}{% endblock %}"><i class="fas fa-wallet"></i> <span>{% trans 'Wallet' %}</span>
+                    </a>
                     </li>
                 </ul>
             </div>
             <div class="bottom">
                 <ul class="navigation">
                     <li class="item">
-                        <a class="link" href="#"><i class="fas fa-cog"></i></a>
+                        <a class="link" href="#"><i class="fas fa-cog"></i> <span>{% trans 'Settings' %}</span></a>
                     </li>
                 </ul>
                 <a href="#" class="navbar-user">

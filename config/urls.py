@@ -28,4 +28,7 @@ urlpatterns = [
     path("home/team/", views.team, name='team'),
     path("home/wallet/", views.wallet, name='wallet'),
     path("home/", views.dashboard, name='dashboard'),
+    path("<slug:slug>/team/", views.team, name='slug-team'),
+    path("<slug:slug>/wallet/", views.wallet, name='slug-wallet'),
+    path("<slug:slug>/", views.dashboard, name='slug-dashboard'),
 ]

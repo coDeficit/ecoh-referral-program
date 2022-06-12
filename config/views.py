@@ -1,6 +1,7 @@
 from functools import wraps
 import json
 import os
+from django.http import HttpResponse
 from django.shortcuts import redirect, render, resolve_url
 from django.utils import timezone
 from django.utils.translation import gettext as _
@@ -39,8 +40,31 @@ def authentication_required(function=None, redirect_field_name=REDIRECT_FIELD_NA
     
     return _wrapped_view
 
+def slugged_view(function=None):
+    @wraps(function)
+    def _wrapped_view(request, *args, **kwargs):
+        if "slug" in kwargs and kwargs["slug"]:
+            # check the API for a person with the slug
+            response = requests.get( "/".join( [API_HOST, 'api', 'people', f'?slug={kwargs["slug"]}'] ), headers={"Authorization": f"Token {request.session['user']['auth_token']}"} )
+            
+            if not response.status_code in [200, 201]:
+                return HttpResponse(_("Person with %(slug)s not found" % {'slug': kwargs["slug"]}))
+            else:
+                person = response.json()
+                request.session["person"] = person
+                request.session['slug'] = kwargs["slug"] if kwargs["slug"] else 'home'
+
+                return function(request, *args, **kwargs)
+        else:
+            return function(request, *args, **kwargs)
+
+    return _wrapped_view
+
 def index(request):
     return render(request, "index.html")
+
+def base(request, slug):
+    return HttpResponse(slug)
 
 def login(request):
     if request.method == "POST":
@@ -55,8 +79,7 @@ def login(request):
             if response.status_code == 200:
                 user = response.json()
                 request.session["user"] = user
-
-                breakpoint()
+                request.session["person"] = user["person"]
 
                 res = redirect("dashboard")
                 
@@ -194,13 +217,16 @@ def verify_phone(request):
     return render(request, "verify-phone.html")
 
 @authentication_required
-def dashboard(request):
+@slugged_view
+def dashboard(request, slug=None):
     return render(request, "dashboard.html")
 
 @authentication_required
-def team(request):
+@slugged_view
+def team(request, slug=None):
     return render(request, "team.html")
 
 @authentication_required
-def wallet(request):
+@slugged_view
+def wallet(request, slug=None):
     return render(request, "wallet.html")

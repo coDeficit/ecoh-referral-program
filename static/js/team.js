@@ -11,11 +11,19 @@ let state = {
     referrals: []
 }
 
+PERSON_HOME_URL = '/home'
+
 var referralsTable = $("#table").DataTable({
     // "aaData": state.referrals,
     "columns": [
         {
-            "data": "name"
+            "data": "name",
+            render: function(data, type, row, meta) {
+                if (type == 'display') {
+                    return `<a href='/${row.slug}'>${data}</a>`
+                } else 
+                    return data
+            }
         },
         {
             "data": "phone"
@@ -49,6 +57,12 @@ var referralsTable = $("#table").DataTable({
                 if (type == 'display' && !row.assigned_referrer) {
                     return `<button class='btn btn-outline-secondary'>Assign</button>`
                 }
+                else if (type == 'display') {
+                    return "---"
+                }
+                else {
+                    return row.assigned_referrer === null ? "Unassigned" : "Assigned"
+                }
             }
         }
     ]
@@ -57,7 +71,7 @@ var referralsTable = $("#table").DataTable({
 if (API_HOST && PERSON_ID) {
     $.ajax({
         type: "GET",
-        url: `${API_HOST}/api/people/${PERSON_ID}/referrals`,
+        url: `${API_HOST}/api/people/${PERSON_ID}/`,
         headers: {
             "Authorization": `Token ${getCookie("auth_token")}`
         },
@@ -76,7 +90,6 @@ function displayTree(json) {
     var data = []
 
     for (let child of json) {
-        console.log(child)
         let object = {
             text: child["name"],
             href: "#",

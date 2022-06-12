@@ -24,6 +24,7 @@ class Middleware:
                 if response.status_code in [200, 201]:
                     request.session["is_authenticated"] = True
                     res = self.get_response(request)
+                    person = request.session.setdefault("person", request.session["user"]["person"])
 
                     try:
                         res.set_cookie("auth_token", request.session["user"]["auth_token"])
@@ -36,12 +37,12 @@ class Middleware:
                         logging.error(f"KeyError: {e}")
 
                     try:    
-                        res.set_cookie("person", request.session["user"]["person"])
+                        res.set_cookie("person", request.session["person"])
                     except Exception as e:
                         logging.error(f"KeyError: {e}")
 
                     try:
-                        res.set_cookie("person_id", request.session["user"]["person"]["id"])
+                        res.set_cookie("person_id", request.session["person"]["id"])
                     except Exception as e:
                         logging.error(f"KeyError: {e}")
 
