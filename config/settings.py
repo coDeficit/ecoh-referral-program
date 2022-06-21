@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
+    'pwa'
 ]
 
 MIDDLEWARE = [
@@ -118,14 +119,58 @@ USE_TZ = True
 API_HOST = "http://localhost:8000"
 LOGIN_URL = "/login"
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static', 'js', 'serviceworker.js')
+PWA_APP_NAME = 'ECOH Referral Platform'
+PWA_APP_DESCRIPTION = "Digital platform for the ECOH referral program"
+PWA_APP_THEME_COLOR = "#48c48c"
+PWA_APP_BACKGROUND_COLOR = "#ffffff"
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'android-icon-144x144' ),
+        'sizes': '144x144'
+    },
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'android-icon-192x192' ),
+        'sizes': '192x192'
+    },
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'android-icon-96x96' ),
+        'sizes': '96x96'
+    },
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'android-icon-48x48' ),
+        'sizes': '48x48'
+    },
+]
+
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'apple-icon-144x144' ),
+        'sizes': '144x144'
+    },
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'apple-icon-180x180' ),
+        'sizes': '180x180'
+    },
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'apple-icon-114x114' ),
+        'sizes': '114x114'
+    },
+    {
+        'src': os.path.join( BASE_DIR, 'static', 'assets', 'favicons', 'apple-icon-60x60' ),
+        'sizes': '60x60'
+    },
+]
+
+PWA_APP_DIR = 'ltr'

@@ -1,5 +1,6 @@
 {% extends 'base-template.html' %}
-{% load i18n static %}
+{% load i18n static pwa %}
+{% progressive_web_app_meta %}
 {% block title %}{% trans "Dashboard" %}{% endblock %}
 
 {% block body %}
