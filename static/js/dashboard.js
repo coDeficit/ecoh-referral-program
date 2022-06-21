@@ -34,8 +34,9 @@ if (API_HOST && PERSON_ID) {
       "Authorization": `Token ${getCookie("auth_token")}`
     },
     success: function (json) {
-      $("#beneficiary-stats .num").text(json["general"]["total_number_of_beneficiaries_referred"])
+      $("#beneficiary-stats .num").text(json["general"]["total_number_of_effective_referrals"])
       $("#earnings-stat .num").text(json["general"]["cost_of_total_number_of_rewards"])
+      $("#sub-referrer-stats .num").text(json["general"]["number_of_sub_referrers"])
 
       const actions = [
         {

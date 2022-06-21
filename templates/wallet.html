@@ -13,13 +13,12 @@
 <script>
     // initializeing datatables 
     $(document).ready(function () {
-        console.log("Doc is ready")
         $('#table').DataTable({
             ordering: false
         });
     })
 </script>
-<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/bootstrap/bootstrap.min.js' %}"></script>
 <style>
     .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, button.nav-link {
         background-color: inherit;
@@ -51,18 +50,11 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>
-                    Monday 12 June 2022
-                </td>
-                <td>
-                    50000
-                </td>
-                <td>
-                    John Doe
-                </td>
-            </tr>
         </tbody>
     </table>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/wallet.js' %}"></script>
 {% endblock %}

@@ -68,7 +68,7 @@
                         {% if not request.session.slug %}
                         {% url 'dashboard' %}
                         {% else %}
-                        {% url 'dashboard' request.session.slug %}
+                        {% url 'slug-dashboard' request.session.slug %}
                         {% endif %}
                         ">
                             <i class="fas fa-tachometer-alt"></i> <span>{% trans 'Dashboard' %}</span>
@@ -79,7 +79,7 @@
                         {% if not request.session.slug %}
                         {% url 'team' %}
                         {% else %}
-                        {% url 'team' request.session.slug %}
+                        {% url 'slug-team' request.session.slug %}
                         {% endif %}
                         "><i class="fas fa-users"></i> <span>{% trans 'Team' %}</span>
                     </a>
@@ -89,7 +89,7 @@
                         {% if not request.session.slug %}
                         {% url 'wallet' %}
                         {% else %}
-                        {% url 'team' request.session.slug %}
+                        {% url 'slug-wallet' request.session.slug %}
                         {% endif %}
                         " class="link {% block wallet_active %}{% endblock %}"><i class="fas fa-wallet"></i> <span>{% trans 'Wallet' %}</span>
                     </a>
@@ -122,15 +122,20 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             {% block breadcrumb_links %}
-                            <li class="breadcrumb-item">
-                                <a href="#">Grand Parent</a>
-                            </li>
-                            <li class="breadcrumb-item">
-                                <a href="#">Parent</a>
-                            </li>
+                            {% if request.session.person %}
+                                {% for parent in request.session.person.assigned_referrers %}
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'slug-dashboard' parent.slug %}">{{parent.name}}</a>
+                                </li>
+                                {% endfor %}
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    {{ request.session.person.name }}
+                                </li>
+                            {% elif request.session.user %}
                             <li class="breadcrumb-item active" aria-current="page">
-                                Child
+                                {{ request.session.user.person.name }}
                             </li>
+                            {% endif %}
                             {% endblock %}
                         </ol>
                     </nav>

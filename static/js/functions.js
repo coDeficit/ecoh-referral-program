@@ -21,4 +21,22 @@ function refreshTable(tableObject, newData) {
 }
 
 const API_HOST = getCookie("api_host")
+const PERSON = JSON.parse( getCookie("person").replace(/\+/g, '') )
+
+try {
+    const USER = JSON.parse( getCookie("user").replace(/\+/g, '') )   
+} catch (error) {
+    console.log("Error parsing user cookie")
+    const USER = null;
+}
+
 const PERSON_ID = getCookie("person_id")
+
+function assignPersonToPerson(personToAssign, person) {
+    if (API_HOST && PERSON_ID) {
+        $.ajax({
+            type: "POST",
+            url: `${API_HOST}/api/people/`
+        })
+    }
+}

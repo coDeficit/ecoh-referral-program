@@ -14,6 +14,7 @@ class Middleware:
         self.api_url = "api/people"
 
     def __call__(self, request):
+        print("Calling middleware")
         if "user" in request.session:
             try:
                 auth_token = request.session["user"]["auth_token"]
@@ -25,7 +26,7 @@ class Middleware:
                     request.session["is_authenticated"] = True
                     res = self.get_response(request)
                     person = request.session.setdefault("person", request.session["user"]["person"])
-
+                    
                     try:
                         res.set_cookie("auth_token", request.session["user"]["auth_token"])
                     except KeyError as e:
@@ -37,7 +38,7 @@ class Middleware:
                         logging.error(f"KeyError: {e}")
 
                     try:    
-                        res.set_cookie("person", request.session["person"])
+                        res.set_cookie("person", urllib.parse.quote_plus(json.dumps(request.session["person"])))
                     except Exception as e:
                         logging.error(f"KeyError: {e}")
 
@@ -50,6 +51,12 @@ class Middleware:
                         res.set_cookie("api_host", urllib.parse.quote_plus(API_HOST))
                     except (ImportError) as e:                    
                         logging.error(f"ImportError: {e}")
+
+                    try:
+                        res.set_cookie("user", urllib.parse.quote_plus(response.content))
+                    except KeyError as e:
+                        print(f"KeyError when setting user cookie in check_user_authenticated: {e}")
+                        logging.error(f"KeyError when setting user cookie in check_user_authenticated: {e}")
                     
                     return res
                 else:

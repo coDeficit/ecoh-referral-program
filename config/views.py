@@ -51,6 +51,9 @@ def slugged_view(function=None):
                 return HttpResponse(_("Person with %(slug)s not found" % {'slug': kwargs["slug"]}))
             else:
                 person = response.json()
+                person["assigned_referrers"].reverse()
+                person["referrers"].reverse()
+                
                 request.session["person"] = person
                 request.session['slug'] = kwargs["slug"] if kwargs["slug"] else 'home'
 

@@ -12,7 +12,6 @@
 <script>
     // initializeing datatables 
     $(document).ready(function () {
-        console.log("Doc is ready")
         $('#table').DataTable({
             ordering: false
         });
@@ -56,6 +55,9 @@
                         </th>
                         <th>
                             {% trans "Phone" %}
+                        </th>
+                        <th>
+                            {% trans 'Referrer' %}
                         </th>
                         <th>
                             {% trans "Orders" %}

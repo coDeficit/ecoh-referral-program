@@ -29,6 +29,13 @@ var referralsTable = $("#table").DataTable({
             "data": "phone"
         },
         {
+            "render": function(data, type, row, meta) {
+                if (type == 'display')
+                    return `<a href='/${row.referrer.slug}'>${row.referrer.name}</a>`
+                return row["referrer"]["name"]
+            }
+        },
+        {
             "data": "orders",
             render: function(data, type, row, meta) {
                 if (type == 'display')
@@ -55,7 +62,10 @@ var referralsTable = $("#table").DataTable({
             "render": function(data, type, row, meta) {
                 console.log(row)
                 if (type == 'display' && !row.assigned_referrer) {
-                    return `<button class='btn btn-outline-secondary'>Assign</button>`
+                    if (row.referrer.id == PERSON["id"])
+                        return `<button class='btn btn-outline-secondary'>Assign</button>`
+                    else
+                        return 'Unassigned'
                 }
                 else if (type == 'display') {
                     return "---"
@@ -71,14 +81,15 @@ var referralsTable = $("#table").DataTable({
 if (API_HOST && PERSON_ID) {
     $.ajax({
         type: "GET",
-        url: `${API_HOST}/api/people/${PERSON_ID}/`,
+        url: `${API_HOST}/api/people/${PERSON_ID}/referrals`,
         headers: {
             "Authorization": `Token ${getCookie("auth_token")}`
         },
         success: function (json) {
-            displayTree(json)
+            console.log(json)
             state.referrals = json
             refreshTable(referralsTable, json)
+            displayTree(json)
         },
         error: function (data) {
             console.log(data.responseText)
