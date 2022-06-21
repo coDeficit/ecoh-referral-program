@@ -1,5 +1,7 @@
 {% extends 'base-template.html' %}
-{% load i18n static %}
+{% load i18n static pwa %}
+{% progressive_web_app_meta %}
+
 {% block title %}{% trans "Team & Referrals" %}{% endblock %}
 {% block team_active %}active{% endblock %}
 
@@ -21,7 +23,8 @@
 <style>
     .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, button.nav-link {
         background-color: inherit;
-        background: none;
+        background: none;ERR_FAILED
+        
     } 
 </style>
 {% endblock %}

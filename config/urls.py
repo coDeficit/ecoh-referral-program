@@ -20,8 +20,8 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.index, name='index'),
     path('', include('pwa.urls')),
+    path("", views.index, name='index'),
     path("login/", views.login, name='login'),
     path("signup/", views.signup, name='signup'),
     path("verify-phone/", views.verify_phone, name='verify-phone'),
