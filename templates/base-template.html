@@ -1,4 +1,5 @@
-{% load i18n static %}
+{% load i18n static pwa %}
+{% progressive_web_app_meta %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +25,6 @@
         <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/favicons/favicon-32x32.png' %}">
         <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/favicons/favicon-96x96.png' %}">
         <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/favicons/favicon-16x16.png' %}">
-        <link rel="manifest" href="{% static 'assets/favicons/manifest.json' %}">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{% static 'assets/favicons/ms-icon-144x144.png' %}">
         <meta name="theme-color" content="#ffffff">
@@ -122,11 +122,23 @@
                         <ol class="breadcrumb">
                             {% block breadcrumb_links %}
                             {% if request.session.person %}
-                                {% for parent in request.session.person.assigned_referrers %}
-                                <li class="breadcrumb-item">
-                                    <a href="{% url 'slug-dashboard' parent.slug %}">{{parent.name}}</a>
-                                </li>
-                                {% endfor %}
+                                {% if request.session.person.assigned_referrer %}
+                                    {% for parent in request.session.person.assigned_referrers %}
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'slug-dashboard' parent.slug %}">{{parent.slug}}</a>
+                                    </li>
+                                    {% endfor %}
+                                
+                                {% else %}
+                                
+                                    {% for parent in request.session.person.referrers %}
+                                    <li class="breadcrumb-item">
+                                        <a href="{% url 'slug-dashboard' parent.slug %}">{{parent.slug}}</a>
+                                    </li>
+                                    {% endfor %}
+
+                                {% endif %}
+
                                 <li class="breadcrumb-item active" aria-current="page">
                                     {{ request.session.person.name }}
                                 </li>

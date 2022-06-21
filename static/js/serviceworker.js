@@ -1,6 +1,22 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 const dbName = "pwa_db"
-const version = 1
-const dbVersion = 1;
+const version = 5;
+const dbVersion = 2;
 
 var staticCacheName = `djangopwa-v${version}`;
 
@@ -10,18 +26,29 @@ const storeNames = [
 	"people",
     "rewards",
     "orders",
-    "rewardrequests"
+    "rewardrequests",
+    "statistics"
 ]
+
+const referralRegex = /\/api\/people\/\d+\/referrals/
+const referralStatisticsRegex = /\/api\/people\/\d+\/referrals\/statistics/
+const referralRewardRegex = /\/api\/people\/\d+\/referral-rewards/
+
+try {
+    const AUTH_TOKEN = getCookie("auth_token")   
+} catch (error) {
+    const AUTH_TOKEN = null
+}
 
 const appShellFiles = [
 	"/static/css/style.css",
 	"/static/js/script.js",
 	"/static/js/jquery-3.6.0.min.js",
 	"/static/js/functions.js",
-	"/static/css/bootstrap/css/booststrap.min.css",
-	"/static/js/bootstrap/js/bootstrap.min.js",
-    "/static/js/bootstrap/js/popper.min.js",
-	"/static/js/bootstrap/js/bootstrap.bundle.min.js",
+	"/static/css/bootstrap/booststrap.min.css",
+	"/static/js/bootstrap/bootstrap.min.js",
+    "/static/js/bootstrap/popper.min.js",
+	"/static/js/bootstrap/bootstrap.bundle.min.js",
 	"/static/font-awesome/css/all.css",
 	"/static/js/luxon.min.js",
     "/static/js/owl.carousel.min.js",
@@ -46,10 +73,15 @@ const appShellFiles = [
     "/static/css/owl.carousel.min.css",
     "/static/css/animate.css",
     "/static/css/theme.css",
-    "/static/css/responsive.css"
+    "/static/css/responsive.css",
+    "/static/assets/images/logo.png",
+    "/static/assets/images/pexels-lay-low-4605240.png",
+    "/static/assets/images/img-1.png"
 ]
 
 self.addEventListener('install', function (event) {
+    console.log("[Service Worker] Install")
+
     event.waitUntil(
         caches.open(staticCacheName).then(function (cache) {
             return cache.addAll([
@@ -57,17 +89,133 @@ self.addEventListener('install', function (event) {
             ]);
         })
     );
+
+    event.waitUntil( (async() => {
+        const cache = await caches.open(staticCacheName);
+        console.log("[Service Worker] caching all: app shell and content");
+        await cache.addAll(appShellFiles)
+    }) )
 });
+
+self.addEventListener('activate', (ev) => {
+	// when the service worker has been activated to replace an old one.
+	// Extendable Event
+	console.log('activated');
+
+	// delete old versions of caches.
+
+	ev.waitUntil(
+		caches.keys().then( (keys) => {
+			return Promise.all(
+				keys.filter( (key) => {
+					if (key != staticCacheName) {
+						return true;
+					}
+				} )
+				.map( (key) => caches.delete(key) )
+			).then( (empties) => {
+				// empties is an Array of boolean values.
+				// one for each cache deleted
+				// TODO:
+			} )
+		} )
+	)
+} )
+
+function setVariableToValue(value, array) {
+    array[0] = value;
+}
 
 self.addEventListener('fetch', function (event) {
     var requestUrl = new URL(event.request.url);
-    console.log("In serviceworker, pathname: " + requestUrl.pathname)
+
+    if (event.request.method == 'GET' ) {
+
+        if (referralStatisticsRegex.test(requestUrl.pathname)) {
+            console.log("User requested statistics")
+
+            // try to get stats from API and store in indexedDB, if not possible; return the current record of the statistics
+            fetch(requestUrl.origin + requestUrl.pathname, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Token: ${AUTH_TOKEN}`
+                }
+            }).then(function(response) {
+                response = response.json()
+    
+                addToStore(1, response, "statistics")
+                
+                return response
+            }).catch(function(err) {
+                let cachedStats = [];
+                getFromStore("statistics", 1, setVariableToValue, callbackParams=[cachedStats])
+                
+                return cachedStats[0];
+            });
+        }
+
+        else if (referralRegex.test(requestUrl.pathname)) {
+            console.log("User requested referrals")
+
+            // try to get referrals from API and store in indexedDB, if not possible return the referrals in indexedDB
+
+            fetch(requestUrl.origin + requestUrl.pathname, {
+                method: 'GET',
+                headers: {
+                    "Authorization": `Token: ${AUTH_TOKEN}`
+                }
+            }).then(function(response) {
+                console.log("Fetch successful")
+
+                response = response.json()
+
+                for (let person of response) {
+                    console.log("Adding a person to the indexedDB")
+
+                    person["saved"] = true
+
+                    // storing the person in the db
+                    addToStore(person.id, person, "people")
+                }
+
+                let people=[];
+
+                getFromStore("people", null, setVariableToValue, [people])
+                
+                console.log("Data gotten from indexedDB: ")
+                console.log(people)
+
+                return response;
+            }).catch(function(err) {
+                let personID = getCookie("person_id")
+                let people=[];
+
+                getFromStore("people", null, setVariableToValue, [people])
+
+                console.log(people)
+            })
+        }
+
+        else if (referralRewardRegex.test(requestUrl.pathname)) {
+            fetch(requestUrl.origin + requestUrl.pathname, {
+                method: 'GET'
+            }).then(function(response) {
+
+            })
+        }
+
+        else {
+            console.log("[Service Worker] this request was not accessing the API: " + event.request.url)
+        }
+    }
+
     if (requestUrl.origin === location.origin) {
         if ((requestUrl.pathname === '/')) {
             event.respondWith(caches.match(''));
             return;
         }
     }
+
     event.respondWith(
         caches.match(event.request).then(function (response) {
             return response || fetch(event.request);
@@ -76,7 +224,7 @@ self.addEventListener('fetch', function (event) {
 });
 
 async function openDB(callback, callbackParams = []) {
-	const openRequest = self.indexedDB.open(dbName, db_version);
+	const openRequest = self.indexedDB.open(dbName, dbVersion);
 
 	openRequest.onerror = function(event) {
 		console.log("Every hour isn't allowed to use IndexedDB?! " + event.target.errorCode);
@@ -89,12 +237,12 @@ async function openDB(callback, callbackParams = []) {
 		for (let storeName of storeNames) {
 			if (!db.objectStoreNames.contains(storeName)) {
 				// if there's no store of 'storeName' create a new object store
-				db.createObjectStore(storeName, { keyPath: "id" })
+				db.createObjectStore(storeName, { keyPath: "id"})
 			}
 		}
 	};
 
-	openRequest.onsuccess = function(event) {
+	openRequest.onsuccess = function(event, callback=null, callbackParams=[]) {
 		console.log( "DB open success, calling callback" )
 		db = event.target.result;
 
@@ -136,7 +284,7 @@ async function addToStore(key, value, storeName=storeNames[0]) {
 	}
 }
 
-async function getFromStore(key, callback, storeName) {
+async function getFromStore(storeName, key=null, callback=null, callbackParams=[]) {
 	// start a transaction
 	const transaction = db.transaction(storeName, "readwrite");
 
@@ -144,11 +292,11 @@ async function getFromStore(key, callback, storeName) {
 	const store = transaction.objectStore(storeName);
 
 	// get key and value from the store
-	const request = store.get(key);
+	const request = key ? store.get(key) : store.getAll();
 
 	request.onsuccess = function(event) {
 		if (callback) {
-			callback(event.target.result.value); // this removes the {key:"key", value:"value"} structure
+			callback(event.target.result, ...callbackParams); // this removes the {key:"key", value:"value"} structure
 		}
 	};
 
