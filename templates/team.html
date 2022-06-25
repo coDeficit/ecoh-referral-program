@@ -83,6 +83,48 @@
 </div>
 {% endblock %}
 
+{% block modals %}
+<div class="modal fade" tabindex="-1" id="person-orders">
+    <div class="modal-dialog modal-lg" style="max-width: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="p-0 col-12 panel-group" id="person-orders-panel" role="tablist" aria-multiselectable="true">
+                    <div class="pr-md-3 pl-3 pr-xl-4 col-12" id="person-orders-panel-content">
+
+                    </div>
+                </div>
+<!-- 
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="order_amount_to_be_paid">{% trans "Amount to be paid" %}</label>
+                        <input type="number" id="order_detail_amount_to_be_paid" class="form-control" readonly>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="order_total_paid">{% trans "Total paid" %}</label>
+                        <input type="number" id="order_detail_total" class="form-control total" readonly>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="order_detail_amount_left">{% trans "Total left" %}</label>
+                        <input type="number" id="order_detail_amount_left" class="form-control" readonly>
+                    </div>
+                </div> -->
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
 {% block js %}
 <script src="{% static 'js/bootstrap-treeview.js' %}"></script>
 <script src="{% static 'js/team.js' %}"></script>

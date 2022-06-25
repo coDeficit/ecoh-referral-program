@@ -21,7 +21,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name='index'),
-    path('', include('pwa.urls')),
     path("login/", views.login, name='login'),
     path("signup/", views.signup, name='signup'),
     path("verify-phone/", views.verify_phone, name='verify-phone'),
@@ -32,4 +31,5 @@ urlpatterns = [
     path("<slug:slug>/team/", views.team, name='slug-team'),
     path("<slug:slug>/wallet/", views.wallet, name='slug-wallet'),
     path("<slug:slug>/", views.dashboard, name='slug-dashboard'),
+    path('<str:str>/', include('pwa.urls')),
 ]

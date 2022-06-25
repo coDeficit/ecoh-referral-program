@@ -126,6 +126,8 @@ function setVariableToValue(value, array) {
     array[0] = value;
 }
 
+const AUTH_TOKEN = getCookie("auth_token")
+
 self.addEventListener('fetch', function (event) {
     var requestUrl = new URL(event.request.url);
 
