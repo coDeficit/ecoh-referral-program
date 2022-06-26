@@ -39,7 +39,7 @@ var referralsTable = $("#table").DataTable({
             render: function (data, type, row, meta) {
                 if (type == 'display')
                     if (data.length > 0) {
-                        return `<button class="btn btn-outline-primary" data-bs-target="#person-orders" data-bs-toggle="modal" onclick=viewPersonOrders(${row["id"]})>View (${data.length})</button>`
+                        return `<button class="btn btn-outline-primary" data-bs-target="#person-orders" data-bs-dismiss="modal" data-bs-toggle="modal" onclick=viewPersonOrders(${row["id"]})>View (${data.length})</button>`
                     } else {
                         return "---"
                     }
@@ -50,8 +50,13 @@ var referralsTable = $("#table").DataTable({
         {
             "data": "referrals",
             render: function (data, type, row, meta) {
-                if (type == 'display')
-                    return tableViewButton(data)
+                if (type == 'display') {
+                    if (data.length > 0) {
+                        return `<button class="btn btn-outline-primary" data-bs-target="#person-referrals" data-bs-dismiss="modal" data-bs-toggle="modal" onclick=viewPersonReferrals(${row["id"]})>View (${data.length})</button>`
+                    } else {
+                        return "---"
+                    }
+                }
                 else
                     return data.length
             }
@@ -80,6 +85,28 @@ var referralsTable = $("#table").DataTable({
     ]
 })
 
+var personReferralsTable = $("#person-referrals-table").DataTable({
+    "columns": [
+        {
+            "data": "name",
+            render: function (data, type, row, meta) {
+                if (type == 'display') {
+                    return `<a href='/${row.slug}'>${data}</a>`
+                } else
+                    return data
+            }
+        },
+        {
+            "data": "phone"
+        },
+        {
+            "render": function (data, type, row, meta) {
+                return "---"
+            }
+        }
+    ]
+})
+
 function getPersonInState(personId) {
     let person = null;
 
@@ -94,12 +121,22 @@ function getPersonInState(personId) {
 
 function viewPersonOrders(personId) {
     let person = getPersonInState(personId)
-    $("#person-orders-panel-content").html("")
 
     if (person !== null) {
         let orders = person.orders
         
         showPersonOrders(orders)
+    } else {
+        alert(gettext(`No person exists with id: ${personId}`))
+    }
+}
+
+function viewPersonReferrals(personId) {
+    let person = getPersonInState(personId)
+    personReferralsTable.clear()
+
+    if (person !== null) {
+        refreshTable(personReferralsTable, person.referrals)
     } else {
         alert(gettext(`No person exists with id: ${personId}`))
     }

@@ -19,20 +19,24 @@
 </script>
 <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 <style>
-    .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active, button.nav-link {
+    .nav-tabs .nav-item.show .nav-link,
+    .nav-tabs .nav-link.active,
+    button.nav-link {
         background-color: inherit;
         background: none;
-    } 
+    }
 </style>
 {% endblock %}
 
 {% block body %}
 <ul class="nav nav-tabs my-3" id="tab" role="tablist">
     <li class="nav-item">
-        <button class="nav-link active mx-1" id="referrals-tab" data-bs-toggle="tab" href="#referrals" aria-controls="referrals" aria-selected="true">{% trans "Referrals" %}</button>
+        <button class="nav-link active mx-1" id="referrals-tab" data-bs-toggle="tab" href="#referrals"
+            aria-controls="referrals" aria-selected="true">{% trans "Referrals" %}</button>
     </li>
     <li class="nav-item">
-        <button class="nav-link mx-1" id="referral-team-tab" data-bs-toggle="tab" href="#referral-team" aria-controls="referral-team" aria-selected="false">{% trans "Referral team" %}</button>
+        <button class="nav-link mx-1" id="referral-team-tab" data-bs-toggle="tab" href="#referral-team"
+            aria-controls="referral-team" aria-selected="false">{% trans "Referral team" %}</button>
     </li>
 </ul>
 
@@ -83,7 +87,7 @@
 
 {% block modals %}
 <div class="modal fade" tabindex="-1" id="person-orders">
-    <div class="modal-dialog modal-fullscreen" style="max-width: none;">
+    <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title"></h5>
@@ -95,7 +99,7 @@
                 <div class="accordion" id="person-orders-accordion">
 
                 </div>
-<!-- 
+                <!-- 
                 <div class="row">
                     <div class="col-md-4">
                         <label for="order_amount_to_be_paid">{% trans "Amount to be paid" %}</label>
@@ -115,6 +119,43 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">{% trans "Close" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="person-referrals">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <table class="table table-striped" id="person-referrals-table">
+                    <thead>
+                        <tr>
+                            <th>
+                                {% trans "Name" %}
+                            </th>
+                            <th>
+                                {% trans "Phone" %}
+                            </th>
+                            <th>
+                                {% trans "Status" %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-bs-dismiss="modal">
+                    {% trans "Close" %}
+                </button>
             </div>
         </div>
     </div>
