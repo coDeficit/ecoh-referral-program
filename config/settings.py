@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
-    'pwa'
 ]
 
 MIDDLEWARE = [
@@ -124,53 +123,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
-PWA_APP_NAME = 'ECOH Referral Platform'
-PWA_APP_DESCRIPTION = "Digital platform for the ECOH referral program"
-PWA_APP_THEME_COLOR = "#48c48c"
-PWA_APP_BACKGROUND_COLOR = "#ffffff"
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
-PWA_APP_STATUS_BAR_COLOR = 'default'
-PWA_APP_ICONS = [
-    {
-        'src': '/static/assets/favicons/android-icon-144x144.png',
-        'sizes': '144x144'
-    },
-    {
-        'src': '/static/assets/favicons/android-icon-192x192.png',
-        'sizes': '192x192'
-    },
-    {
-        'src': '/static/assets/favicons/android-icon-96x96.png',
-        'sizes': '96x96'
-    },
-    {
-        'src': '/static/assets/favicons/android-icon-48x48.png',
-        'sizes': '48x48'
-    },
-]
-
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': '/static/assets/favicons/apple-icon-144x144.png',
-        'sizes': '144x144'
-    },
-    {
-        'src': '/static/assets/favicons/apple-icon-180x180.png',
-        'sizes': '180x180'
-    },
-    {
-        'src': '/static/assets/favicons/apple-icon-114x114.png',
-        'sizes': '114x114'
-    },
-    {
-        'src': '/static/assets/favicons/apple-icon-60x60.png',
-        'sizes': '60x60'
-    },
-]
-
-PWA_APP_DIR = 'ltr'
